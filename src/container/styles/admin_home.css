@@ -1,0 +1,25 @@
+body{
+    display: block;
+    text-align: center;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+label{
+    display: flex;
+}
+.admin_header{
+    padding-top: 0px;
+    margin-top: 0px;
+    text-align: center;
+}
+.admin_header + h4{
+    display: flex;
+
+}
+select{
+    display: flex;
+
+}
+select option{
+    width: 80px;
+}
