@@ -1,25 +1,51 @@
-body{
+
+
+.admin{
     display: block;
     text-align: center;
     padding-top: 0px;
     margin-top: 0px;
+    background-color: 	peachpuff;
 }
 label{
-    display: flex;
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    
 }
 .admin_header{
     padding-top: 0px;
     margin-top: 0px;
     text-align: center;
 }
-.admin_header + h4{
-    display: flex;
+.admin_header + h4, .upload_form + h4{
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
 
 }
-select{
-    display: flex;
-
+select, .upload_form input{
+    display: inline-block;
+    width: 100%;
+    margin: 5px;
+    height: 25px;
+    background-color: rgb(199, 199, 199);
+    border: none;
+    text-align: center;
 }
 select option{
     width: 80px;
+}
+.upload_form{
+    display: inline-block;
+    width: 80%;
+    background-color: rgba(250, 250, 250);
+    padding: 20px;
+    box-shadow: 1px 2px 12px dimgray;
+    
+}
+.rm{
+    height: 400px;
 }

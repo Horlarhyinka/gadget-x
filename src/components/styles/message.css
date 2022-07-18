@@ -1,0 +1,45 @@
+
+.alertBox{
+    background-color: lightgreen;
+    width: 100%;
+    margin: 3px;
+    height: 30px;
+    padding: 3px;
+
+}
+.alertBox.success{
+    background-color: lightgreen;
+}
+.alertBox.failed{
+    background-color: rgb(250, 183, 183);
+}
+.alertBox p{
+    display: inline-block;
+    width: 80%;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 2px;
+    text-align: left;
+}
+.alertBox span{
+    color: dimgrey;
+    padding: 0px;
+    margin: 0px;
+    font-weight: bold;
+    cursor: pointer;
+
+    
+} 
+.alertBox button{
+    margin-right: 0px;
+    right: 0px;
+    display: block;
+    text-align: right;
+}
+
+.success_icon{
+    padding: 0px;
+    color: white;
+    font-size: 24px;
+    align-self: center;
+}
