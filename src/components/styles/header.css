@@ -1,11 +1,10 @@
 @import url('http://fonts.cdnfonts.com/css/montserrat');
 
 .header{
-    position: absolute;
-    top: 0px;
+
     background-color: black;
-    font-family: "montserrat";
     width: 100%;
+    margin-bottom: 0px;
 }
 .header h1{
     text-align: center;

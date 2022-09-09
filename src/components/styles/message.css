@@ -7,6 +7,9 @@
     padding: 3px;
 
 }
+.alertBox.pending{
+    background-color: lightgray;
+}
 .alertBox.success{
     background-color: lightgreen;
 }
