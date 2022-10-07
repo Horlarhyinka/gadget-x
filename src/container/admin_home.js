@@ -3,6 +3,7 @@ import { Component } from "react";
 import {UploadForm } from "./form";
 import AdminProducts from "./admin_product_list";
 
+
 class AdminHome extends Component{
     constructor(){
         super();
@@ -16,6 +17,7 @@ class AdminHome extends Component{
 
 
     render(){
+        console.log(this.props)
         return ( <div className="admin">
         <h1 className="admin_header" >welcome admin </h1>
             <h4>Upload a new product</h4>

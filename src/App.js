@@ -4,6 +4,7 @@ import {BrowserRouter, Routes , Route} from "react-router-dom";
 import AdminHome from './container/admin_home';
 import Header from './components/header';
 import Modify from './container/modify';
+import Home from './container/home';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
     <Route exact path='/administrator/home' element={<AdminHome/>}/>
     <Route exact path='/administrator/login' element=""/>
     <Route exact path='/administrator/products/:id' element={<Modify />} />
-    <Route exact path='/' element=""/>
+    <Route exact path='/' element={<Home/>}/>
     <Route exact path='/products' element={""} />
   </Routes>
     </div>

@@ -1,0 +1,86 @@
+
+
+.notfound h1{
+    color: grey;
+    font-size: 28px;
+    text-align: center;
+}
+button{
+    display: inline-block;
+    text-align: center;
+    margin-left: 40%;
+    margin-top: 5px;
+    align-self: center !important;
+}
+.edit{
+    position:absolute;
+
+}
+.imgprev,img{
+    display: inline-block;
+    width: 99%;
+    max-width: 99%;
+    height: auto;
+    max-height: fit-content;
+    margin-top: 8px;
+}
+.modify{
+    text-align: center;
+}
+
+.fieldsdisp{
+display: inline-block;
+box-shadow: 1px 1px 8px dimgray;
+margin-top: 14px;
+max-width: 98%;
+width: 100%;
+align-self: center;
+text-align: left;
+padding-bottom: 13px;
+}
+
+label,input{
+display: inline-block;
+text-align: left;
+margin-left: 8px;
+margin-top: 2px;
+text-align: center;
+margin-top: 15px;
+}
+.field label{
+    display: inline-block;
+    font-weight: bold;
+    font-size: larger;
+    text-align: left;
+    width: 100%;
+}
+.field input{
+    width:80%;
+    height: 30px;
+    font-size: 22px;
+}
+span{
+    margin-left:12px;
+    font-weight: bolder;
+    font-size: 14px;
+    color: blue;
+    cursor: pointer;
+    margin-right: 6px;
+}
+
+@media  screen and (max-width:830px) {
+    input{
+        width: 97%;
+        margin-right: 6px;
+    }
+}
+@media  screen and (max-width:650px) {
+    input{
+        width: 95%;
+    }
+}
+@media  screen and (max-width:420px) {
+    input{
+        width: 93%;
+    }
+}
