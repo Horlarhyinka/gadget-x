@@ -2,18 +2,17 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./styles/preview.css"
 import axios from "axios";
+import RelatedProducts from "../components/related";
 //import bgimg from "../components/bgimg.jpg"
 
 
 const Preview = () => {
     const {id} =  useParams()
     const queryUrl = "http://localhost:2003/api/v1/products/"+id
-    const relatedProductsQueryUrl = ""
     const [info, setInfo] = useState()
     let [images,setImages] = useState([])
     let [curImg, setCurImg] = useState()
     let [comments,setComments] = useState()
-    const [relatedProducts, setRelatedProducts] = useState()
     useEffect(()=>{
     axios.get(queryUrl).then(res=>{
         setInfo(res.data)
@@ -23,11 +22,7 @@ const Preview = () => {
         setComments(comments)
     })
     },[queryUrl])
-    useEffect(()=>{
 
-    },[relatedProductsQueryUrl])
-
-    console.log(info)
     const commentsList = comments && comments.map(comment=>{
         let date = new Date()
         const {createdAt} = comment
@@ -54,7 +49,8 @@ const imagesList = images.map(image=>{
             {commentsList?<div><h4>comments</h4>
             {commentsList}</div>:<p>no comments yet</p>}
         </div>
-
+        <RelatedProducts />
+        <div className="checkout-btn">Checkout {info.price}$</div>
     </div> );
 }
  

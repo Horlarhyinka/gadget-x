@@ -19,7 +19,7 @@ const SearchSection = ({handleSearchChange}) => {
     }
     useEffect(()=>{
         return activeCat && handleSearchChange({"target":{"value":activeCat}})
-    },[activeCat])
+    },[activeCat,handleSearchChange])
     
     
 
