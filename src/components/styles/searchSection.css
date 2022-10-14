@@ -1,0 +1,40 @@
+.searchsection{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+
+}
+
+.searchfield{
+    display: inline-block;
+    width: 98%;
+    height: 25px;
+    margin: 2px 2px 0px 2px ;
+    border: 2px solid lightgrey;
+}
+.activecat{
+    display: block;
+    text-align: right;
+}
+.activecat h2{
+    display: inline-block;
+    padding: 3px;
+    width: auto;
+    min-width: 45px;
+    text-align: center;
+    margin-right: 3px;
+    margin-top: 2px;
+    margin-bottom: 0px;
+    background-color: lightgrey;
+    border-radius: 30px;
+    font-size: 18px;
+    padding-left: 8px;
+    padding-right: 8px;
+    cursor: pointer;
+    
+}
+.allcats{
+    display: block;
+    margin-top: 20px;
+    text-align: left;
+}

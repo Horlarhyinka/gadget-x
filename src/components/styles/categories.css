@@ -1,0 +1,50 @@
+.categories h1{
+    text-align: left;
+    margin-left: 13px;
+}
+.categories{
+    display: inline-block;
+    width: 100% !important;
+}
+.catswrapper{
+    display: flex;
+    width: 98%;
+    overflow-x: scroll;
+}
+.catcard{
+    display: inline-block;
+    width: 200px;
+    min-width: 200px;
+    height: 350px;
+    margin: 3px;
+    padding: 0px;
+    box-shadow: 1px 1px 4px grey;
+}
+.catcardimg{
+margin: 0px;
+height: 70%;
+width: 97%;
+max-width: 97%;
+margin-top: 3px;
+}
+.catcard{
+    border-radius: 5px 5px 30px 30px;
+}
+.catcardimg{
+    border-radius: 5px 5px 5px 5px;
+}
+@media screen and (max-width:920px){
+    .catcard{
+        height: 300px;
+    }
+}
+@media screen and (max-width:800px){
+    .catcard{
+        height: 250px;
+    }
+    .catcardimg{
+        height: 60%;
+    }
+}
+
+

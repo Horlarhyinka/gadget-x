@@ -1,8 +1,10 @@
 .cardBox{
     width:200px;
+    min-width: 200px;
     display: inline-block;
     box-shadow: 2px 2px 4px grey;
-    height: 250px;
+    height: 300px;
+    max-height: 250px;
     border-radius: 3px;
     margin: 4px;
     padding:8;
@@ -14,6 +16,7 @@
     transition-duration: 250ms;
     cursor: pointer;
 }
+
 .prodprice,.prodname{
     display: block;
     text-align: center;
@@ -41,14 +44,10 @@ a{
     height: 60%;
 }
 .cat{
-    margin-top: 0px;
-    width: 70%;
     display: block;
+    text-align: center;
     font-weight: light;
-    line-height: 13px;
     font-size: 12px;
-    padding-left: 4px;
-    color: rgb(37, 37, 37);
 }
 .delicn{
     height: 25px;

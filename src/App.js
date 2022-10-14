@@ -5,6 +5,8 @@ import AdminHome from './container/admin_home';
 import Header from './components/header';
 import Modify from './container/modify';
 import Home from './container/home';
+import Shop from './container/shop';
+import Preview from './container/preview';
 
 function App() {
   return (
@@ -17,7 +19,8 @@ function App() {
     <Route exact path='/administrator/login' element=""/>
     <Route exact path='/administrator/products/:id' element={<Modify />} />
     <Route exact path='/' element={<Home/>}/>
-    <Route exact path='/products' element={""} />
+    <Route path='/shop/:category' element={<Shop/>} />
+    <Route exact path='/products/:id' element={<Preview />} />
   </Routes>
     </div>
     </BrowserRouter>

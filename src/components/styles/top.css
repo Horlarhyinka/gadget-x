@@ -1,0 +1,47 @@
+.top h1{
+    text-align: left;
+    margin-left: 13px;
+}
+.top{
+    display: inline-block;
+    width: 100% !important;
+    text-align: center;
+}
+.topswrapper{
+    display: flex;
+    width: 100%;
+    overflow-x: scroll; 
+    height: 400px;
+    max-height: 400px;
+}
+.topcard{
+    display: inline-block;
+    width: 200px;
+    min-width: 200px;
+    height: 350px;
+    margin: 3px;
+    padding: 0px;
+    box-shadow: 1px 1px 4px grey;
+}
+.topcardimg{
+margin: 0px;
+height: 60%;
+width: 97%;
+max-width: 97%;
+margin-top: 3px;
+}
+.topcard{
+    border-radius: 45px 5px 45px 5px;
+}
+.topcardimg{
+    border-radius: 45px 5px 5px 5px;
+}
+
+@media screen and (max-width:920px){
+    .topcard{
+        height: 300px;
+    }
+}
+
+
+

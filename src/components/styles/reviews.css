@@ -1,0 +1,32 @@
+.reviews{
+    display: inline-block;
+    text-align: center;
+    width: 100% !important;
+}
+.reviews h1{
+    text-align: left;
+    margin-left: 13px;
+}
+
+.revcard{
+    display: inline-block;
+    width: 200px;
+    min-width: 200px;
+    padding: 3px;
+    margin: 2px;
+    box-shadow: 1px 1px 3px grey;
+
+}
+.revimg{
+    width: 100%;
+    margin: 0px;
+}
+.revwrapper{
+    display: flex;
+    overflow-x: scroll;
+}
+/* @media screen and (max-width:920px){
+    .revcard{
+        height: 220px;
+    }
+} */
