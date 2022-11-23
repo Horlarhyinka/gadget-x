@@ -7,6 +7,7 @@ import Modify from './container/modify';
 import Home from './container/home';
 import Shop from './container/shop';
 import Preview from './container/preview';
+import Cart from './container/cart';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
     <Route exact path='/' element={<Home/>}/>
     <Route path='/shop/:category' element={<Shop/>} />
     <Route exact path='/products/:id' element={<Preview />} />
+    <Route exact path='/cart' element={<Cart />} />
   </Routes>
     </div>
     </BrowserRouter>

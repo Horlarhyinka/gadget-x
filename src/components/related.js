@@ -11,7 +11,6 @@ const RelatedProducts = () => {
     const [related, setRelated] = useState([])
     useEffect(()=>{
         axios.get(queryUrl).then(res=>{
-            console.log(res)
             setRelated(res.data)
         })
     },[queryUrl])

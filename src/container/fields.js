@@ -6,7 +6,6 @@ return <div className="fieldcompwrapper">
         <input type={"text"} defaultValue={i[1]} />
         </div>
     })
-
     return ( <div>
 
     </div> );

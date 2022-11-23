@@ -2,6 +2,8 @@ import axios from "axios"
 import {Component} from "react"
 import SearchSection from "../components/search"
 import Products from "../components/products"
+import { authHOC } from "./HOC/auth-hoc";
+import Jumia from "../components/jumia";
 
 const productsUrl = "http://localhost:2003/api/v1/products"
 
@@ -34,6 +36,7 @@ class Shop extends Component {
         return (<div className="shop" >
             <SearchSection handleSearchChange={this.handleSearchChange} />
             <Products products={this.state.products} />
+            <Jumia keyword={"gadget"} />
         </div>);
     }
 }

@@ -27,8 +27,8 @@ Link{
     color: black;
 }
 a{
-    color: black;
-    text-decoration: none;
+    color: black !important;
+    text-decoration: none !important;
 }
 .prodname{
     font-size: 16px;

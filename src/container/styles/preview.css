@@ -6,8 +6,10 @@
 .preview-image{
     display: inline-block;
     text-align: center;
-    width: 98%;
-    height: 450px;
+    width: auto;
+    height: auto;
+    max-height: 450px;
+    max-width: 450px;
 }
 .mini-image{
     height: 35px;
@@ -61,6 +63,10 @@ small{
     padding: 0.5px 2px;
     overflow: hidden;
 }
+.no-comment{
+    font-weight: bolder;
+    color: lightgray;
+}
 .preview-comments h4{
     display: block;
     text-align: left;
@@ -75,4 +81,22 @@ small{
     margin-right: 8px;
     font-size: 12px;
     font-weight: bolder;
+}
+
+.checkout-btn{
+    display: inline-block;
+    text-align: center;
+    height: 34px;
+    width: 98.5%;
+    margin-top: 8px;
+    margin-bottom: 3.5px;
+    background-color: rgb(1, 151, 1);
+    color: white !important;
+    font-weight: bolder;
+    font-size: 18px;
+    padding-top: 8px;
+    position: fixed;
+    bottom: 3px;
+    left: 5px;
+    cursor: pointer;
 }

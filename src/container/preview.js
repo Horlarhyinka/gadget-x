@@ -1,8 +1,10 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./styles/preview.css"
 import axios from "axios";
 import RelatedProducts from "../components/related";
+import { authHOC } from "./HOC/auth-hoc";
+import Jumia from "../components/jumia";
 //import bgimg from "../components/bgimg.jpg"
 
 
@@ -37,7 +39,6 @@ const imagesList = images.map(image=>{
     return <img className="mini-image" alt="" onClick={handleClick} src={image} key={image} id={image} />
 })
 
- 
     
     return !info?<h1 className="preview-failed">unable to preview this product...</h1>:( <div className="product-preview">
         <img className="preview-image" src={curImg} alt={info.name} label={info.name} />
@@ -46,11 +47,15 @@ const imagesList = images.map(image=>{
         <h1 className="preview-name">{info.name}</h1>
         <strong className="preview-price">{info.price}$</strong>
         <div className="preview-comments">
-            {commentsList?<div><h4>comments</h4>
-            {commentsList}</div>:<p>no comments yet</p>}
+            {commentsList.length?<div><h4>comments</h4>
+            {commentsList}</div>:<p className="no-comment">no comments yet</p>}
         </div>
+        <form></form>
         <RelatedProducts />
-        <div className="checkout-btn">Checkout {info.price}$</div>
+        <Jumia keyword={info.name} />
+        <div onClick={()=>{
+            window.location.assign("/cart")
+        }} className="checkout-btn">Checkout {info.price}$</div>
     </div> );
 }
  

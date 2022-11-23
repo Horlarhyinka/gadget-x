@@ -26,21 +26,7 @@
     overflow-x: scroll;
 }
 
-.checkout-btn{
-    display: inline-block;
-    text-align: center;
-    height: 34px;
-    width: 98.5%;
-    margin: 2px 0px;
-    margin-top: 8px;
-    margin-bottom: 3.5px;
-    margin-right: 0px;
-    background-color: darkgreen;
-    color: white;
-    font-weight: bolder;
-    font-size: 18px;
-    padding-top: 8px;
-}
+
 /* @media screen and (max-width:920px){
     .revcard{
         height: 220px;

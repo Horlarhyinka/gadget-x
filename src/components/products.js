@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom"
-//import bgimg from "./bgimg.jpg"
+import { Link } from "react-router-dom";
 import "./styles/products.css"
 const Products = ({products}) => {
 
@@ -11,8 +10,8 @@ const productsList = products.map((product)=>{
         <img src={preview_image_url} alt={name} label={preview_image_url} />
         <h1>{name}</h1>
         <strong>{price}$</strong>
-        <button className="btn-preview">preview</button>
-        <button className="btn-cart">add to cart</button>
+        <button className="btn-preview">Buy now</button>
+        <button className="btn-cart">Add to cart</button>
     </Link >)
 })
     return ( <div className="productscardlist">

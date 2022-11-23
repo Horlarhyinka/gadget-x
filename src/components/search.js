@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 const SearchSection = ({handleSearchChange}) => {
     const {category} = useParams()
     let id = 0;
-    let initialCat = category || "All"
+    let initialCat = category 
     const [activeCat, setActiveCat] = useState(initialCat)
     const handleCatChange = (cat) =>{
         if(cat.toLowerCase() === "all"){
@@ -17,9 +17,10 @@ const SearchSection = ({handleSearchChange}) => {
           handleSearchChange({"target":{"value":cat}})
         }  
     }
+    
     useEffect(()=>{
-        return activeCat && handleSearchChange({"target":{"value":activeCat}})
-    },[activeCat,handleSearchChange])
+    handleCatChange(initialCat)
+    },[])
     
     
 
