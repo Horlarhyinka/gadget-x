@@ -4,9 +4,8 @@ import { cats } from "../assets/datas";
 import { useParams } from "react-router-dom";
 
 const SearchSection = ({handleSearchChange}) => {
-    const {category} = useParams()
     let id = 0;
-    let initialCat = category 
+    let initialCat = "all"
     const [activeCat, setActiveCat] = useState(initialCat)
     const handleCatChange = (cat) =>{
         if(cat.toLowerCase() === "all"){
@@ -30,7 +29,7 @@ const SearchSection = ({handleSearchChange}) => {
     return ( <div className="searchsection">
 <input className="searchfield"  type={"text"} onChange={(e)=>{handleSearchChange(e)}} placeholder="search products/categories" />
 <div className="activecat">
-    <h2>{!activeCat?"All":activeCat}</h2>
+    <h2>{!activeCat?initialCat:activeCat}</h2>
     <div className="allcats">
     {catsList}
     </div>

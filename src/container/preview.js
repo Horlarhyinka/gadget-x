@@ -50,12 +50,13 @@ const imagesList = images.map(image=>{
             {commentsList.length?<div><h4>comments</h4>
             {commentsList}</div>:<p className="no-comment">no comments yet</p>}
         </div>
-        <form></form>
-        <RelatedProducts />
-        <Jumia keyword={info.name} />
         <div onClick={()=>{
             window.location.assign("/cart")
-        }} className="checkout-btn">Checkout {info.price}$</div>
+        }} className="checkout-btn">Add to cart</div>
+        <form></form>
+        <RelatedProducts />
+        <Jumia keyword={info.name} className="jumia" />
+        
     </div> );
 }
  

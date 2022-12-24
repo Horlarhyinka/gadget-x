@@ -20,7 +20,7 @@ class Home  extends Component {
            <span className="writeup">
             Luxury is comic
            </span>
-           <Link to={"/shop/All"} className="cta">
+           <Link to={"/shop"} className="cta">
             <span>Shop</span>
             <Icon className="arr" icon="material-symbols:arrow-circle-right-rounded" />
            </Link>

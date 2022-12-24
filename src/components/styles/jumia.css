@@ -1,50 +1,39 @@
-.jumia-product-card{
-    width: 98%;
-    height: auto;
-    border:1px solid rgb(194, 194, 194);
-    margin: 3px 1px;
-    align-items: center;
+
+.card-list{
+    width: 98.5%;
+    border: 1px solid rgb(238, 238, 238);
+    margin-top: 24px;
+    display: flex;
+    max-height: 420px;
+    overflow-x: scroll;
 
 }
 
-.jumia h4{
+
+.jumia-head-label{
+    display: block;
     text-align: left;
-    font-weight: bold;
-    font-size: 24px;
-    color: rgb(48, 48, 48);
     margin-left: 5px;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgb(41, 41, 41);
+    margin-top: 25px;
+    margin-bottom: 12px;
 }
 
-.jumia-product-card img{
-    height: 95%;
-    align-self: center;
-    display: inline-block;
-    width: 15%;
-}
-.jumia-product-card img+div{
-    width: 83%;
-    padding-top: 12px;
-    padding-left: 12px;
-    display: inline-block;
-    text-align: left;
-    padding-bottom: 8px;
-    align-self: center;
-    align-items: center;
-}
-.jumia-product-card strong{
+.jumia-result{
     display: block;
-    font-weight: bold;
+    text-align: center;
     font-size: 18px;
-    color: rgb(27, 27, 27);
-    max-width: 90%;
+    font-weight: 400;
+    color: rgb(158, 158, 158);
 }
-.jumia-product-card p{
-    font-weight: normal;
-    color: rgb(46, 46, 46);
-    max-width: 90%;
-    display: block;
-    margin: 8px 3px;
-}
-.jumia-product-card h4{
-    margin: 3px 0px;
+
+.jumia-head-logo{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    align-self: center;
+    margin: 2px;
+    align-items: center;
 }

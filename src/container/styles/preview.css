@@ -85,18 +85,21 @@ small{
 
 .checkout-btn{
     display: inline-block;
-    text-align: center;
-    height: 34px;
-    width: 98.5%;
-    margin-top: 8px;
-    margin-bottom: 3.5px;
-    background-color: rgb(1, 151, 1);
-    color: white !important;
-    font-weight: bolder;
+    position: sticky;
+    top: 1px;
+    bottom: 0px;
+    width: 98%;
+    height: 30px;
+    border: 1px solid lightgray;
+    align-items: center;
+    padding-top: 6px;
+    color: white;
+    background-color: orange;
+    font-weight: 400px;
     font-size: 18px;
-    padding-top: 8px;
-    position: fixed;
-    bottom: 3px;
-    left: 5px;
-    cursor: pointer;
+}
+
+.preview .jumia{
+    margin-bottom: 150px;
+    
 }

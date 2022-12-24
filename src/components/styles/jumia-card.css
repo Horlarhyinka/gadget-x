@@ -1,0 +1,31 @@
+.jumia-card{
+    display: block;
+    border: 1px solid lightgrey;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    height: 350px;
+    max-height: 400px;
+    margin: 12px 6px;
+}
+
+.jumia-card img{
+    display: inline-block;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    height: 200px;
+    max-height: 200px;
+    margin: 0px;
+}
+
+.jumia-card p{
+    font-weight: 400;
+    font-size: 14px;
+    margin:12px 4px;
+}
+.jumia-card strong{
+    font-weight: bold;
+    font-size: 12px;
+    margin:12px 4px;
+}

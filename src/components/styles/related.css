@@ -10,3 +10,14 @@
     height: 380px;
 }
 
+.related h2{
+    display: block;
+    text-align: left;
+    margin-left: 5px;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgb(41, 41, 41);
+    margin-top: 25px;
+    margin-bottom: 12px;
+}
+
