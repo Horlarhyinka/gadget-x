@@ -1,9 +1,8 @@
 import {Component} from "react";
 import "./styles/auth.css";
-import G_icn from "../assets/G_icn.png"
 import axios from "axios";
 
-const queryUrl = "http://localhost:2003/api/v1/auth/"
+const queryUrl = process.env.NODE_ENV==="production"?process.env.BASE_URL+"/auth/":"http://localhost:2003/api/v1/auth/"
 class Authenticate extends Component {
     state = { 
         status:"login",
@@ -20,15 +19,17 @@ class Authenticate extends Component {
     }
     handleSubmit = async()=>{
         const url = queryUrl+this.state.status;
-        console.log(url)
         axios.post(url,{email:this.state.email,password:this.state.password}).then(res=>{
-            console.log(res.data)
+            const {data,token} = res.data
+            localStorage.setItem("x-auth-token",token)
+            window.location.reload()
         }).catch((err)=>{
             console.log(err.response.data.message)
         })
         
     }
     render() { 
+        const G_icn = "https://www.google.com/search?q=google&sxsrf=ALiCzsZka-5nXxjtLpA-fPeCBafOZFlwSQ:1672228671321&tbm=isch&source=iu&ictx=1&vet=1&fir=mM5eejaz-bUIsM%252C0UCf55-GTy6fDM%252C%252Fm%252F045c7b&usg=AI4_-kSYAGYPZdf4mjV9iTOVhdppGBfSaw&sa=X&ved=2ahUKEwjhoL-foZz8AhXX_rsIHeTMC_0Q_B16BAg_EAI#imgrc=mM5eejaz-bUIsM"
         const image_url = "https://res.cloudinary.com/lahri/image/upload/v1666514029/ckhximqrrdxp0umb8q8k.jpg"
         return (<div className="auth" >
             <div className="side-div" style={{backgroundImage:`url(${image_url})`}}  >
@@ -66,7 +67,7 @@ class Authenticate extends Component {
         
             <br></br>
             <div onClick={this.handleSubmit} className="submit"> Submit </div>
-            <p className="switch-state"><span onClick={()=>this.handleStatus()} href="#">click to {this.state.status==="login"?"register":"login"}</span></p>     
+            <p className="switch-state"><span onClick={()=>this.handleStatus()} >click to {this.state.status==="login"?"register":"login"}</span></p>     
             </form>
     
         </div>);

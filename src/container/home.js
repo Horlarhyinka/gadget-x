@@ -1,4 +1,4 @@
-import {Component} from "react";
+import React from "react";
 import "./styles/home.css";
 import { Icon } from '@iconify/react';
 import Top from "../components/top";
@@ -7,7 +7,7 @@ import Reviews from "../components/reviews";
 import { Link } from "react-router-dom";
 
 const img_uri = "https://res.cloudinary.com/lahri/image/upload/v1665172022/otztpwt9okj5hfoykxzl.png"
-class Home  extends Component {
+class Home  extends React.Component {
     state = {products:[]} 
     render() { 
         return (<div className="home">

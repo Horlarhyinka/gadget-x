@@ -1,3 +1,4 @@
+import React from "react";
 import axios from "axios"
 import {Component} from "react"
 import SearchSection from "../components/search"
@@ -15,6 +16,7 @@ class Shop extends Component {
         let allProducts = await axios(productsUrl)
         this.allProducts = allProducts.data
         this.setState({products:[...allProducts.data]})
+        console.log(this.props)
      }
      handleSearchChange = (e) =>{
         let searchField = e.target.value.trim()

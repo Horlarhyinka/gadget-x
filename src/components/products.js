@@ -1,5 +1,7 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import "./styles/products.css"
+import "./styles/products.css";
+
 const Products = ({products}) => {
 
 const productsList = products.map((product)=>{

@@ -1,21 +1,16 @@
-
-import { Component } from "react";
+import React from "react";
 import {UploadForm } from "./form";
 import AdminProducts from "./admin_product_list";
 
 
-class AdminHome extends Component{
+class AdminHome extends React.Component{
     constructor(){
         super();
         this.state = {
             OverlayOpen:false,
             categoryfilter:""
         }
-
-
     }
-
-
     render(){
         console.log(this.props)
         return ( <div className="admin">

@@ -18,6 +18,10 @@
     font-weight: 600;
     color: rgb(41, 41, 41);
     margin-top: 25px;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+.related{
+    padding-top: 45px;
 }
 

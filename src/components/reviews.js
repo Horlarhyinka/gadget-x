@@ -1,5 +1,7 @@
+import React from "react";
 import { reviews } from "../assets/datas";
-import "./styles/reviews.css"
+import "./styles/reviews.css";
+
 
 const Reviews = () => {
 
@@ -28,5 +30,4 @@ const Reviews = () => {
             </div>);
 }
  
-export default Reviews;<div>
-</div>
+export default Reviews;

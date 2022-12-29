@@ -1,4 +1,6 @@
-import "./styles/header.css"
+import React from "react";
+import "./styles/header.css";
+
 
 const Header = () => {
     return ( <div className="header"><h1>Gadget-x</h1></div> );

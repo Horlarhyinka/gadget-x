@@ -1,3 +1,4 @@
+import React from "react";
 import { tops } from "../assets/datas";
 import "./styles/top.css"
 

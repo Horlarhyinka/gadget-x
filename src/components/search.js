@@ -1,6 +1,8 @@
+import React from "react";
 import "./styles/searchSection.css";
 import {useEffect, useState} from "react";
 import { cats } from "../assets/datas";
+
 import { useParams } from "react-router-dom";
 
 const SearchSection = ({handleSearchChange}) => {

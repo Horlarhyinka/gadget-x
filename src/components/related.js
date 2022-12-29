@@ -1,3 +1,4 @@
+import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; 
@@ -23,7 +24,7 @@ const RelatedProducts = () => {
             <img src={preview_image_url} alt={name} label={preview_image_url} />
             <h1>{name}</h1>
             <strong>{price}$</strong>
-            <button className="btn-preview">preview</button>
+            <button className="btn-preview">buy now</button>
             <button className="btn-cart">add to cart</button>
         </Link >)
     })

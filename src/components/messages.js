@@ -1,18 +1,17 @@
-
+import React from "react";
 import Alert from "react-bootstrap/Alert";
-import { Component } from "react";
-
 import "./styles/message.css";
 
-class UploadMessage extends Component{
+class UploadMessage extends React.Component{
    
     constructor(props){
         super(props);
         this.props = props;
         this.reset = props.closeMessage
-        
     }
+
     render(){
+
         let {Success, Failed, Pending, AlertOpen} = this.props.states;
 
         if(Pending){
@@ -23,7 +22,6 @@ class UploadMessage extends Component{
         }
     
         if(Failed){return AlertOpen && <Alert className="alertBox failed" variant='failed'>
-            
         <p>upload failed</p>
         <span onClick={this.reset}>x</span>
       </Alert>}

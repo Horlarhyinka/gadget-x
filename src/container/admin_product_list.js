@@ -1,10 +1,11 @@
+import React from "react";
 import axios from "axios";
-import { Component } from "react";
 import Productslist from "./productslist";
-import Select from "react-select";import "./styles/admin_home.css";
+import Select from "react-select";
+import "./styles/admin_home.css";
 
 
-class AdminProducts extends Component{
+class AdminProducts extends React.Component{
      constructor(){
         super()
         this.state = {

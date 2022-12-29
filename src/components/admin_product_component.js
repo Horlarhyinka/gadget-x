@@ -1,3 +1,4 @@
+import React from "react";
 import "./styles/card.css";
 import { Icon } from "@iconify/react";
 import remove from "../functions/remover";

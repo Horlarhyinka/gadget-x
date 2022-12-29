@@ -1,7 +1,8 @@
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./styles/preview.css"
-import axios from "axios";
+import axios, { Axios } from "axios";
 import RelatedProducts from "../components/related";
 import { authHOC } from "./HOC/auth-hoc";
 import Jumia from "../components/jumia";
@@ -51,6 +52,8 @@ const imagesList = images.map(image=>{
             {commentsList}</div>:<p className="no-comment">no comments yet</p>}
         </div>
         <div onClick={()=>{
+            const token = localStorage.getItem("x-auth-token")
+            axios.post("http://localhost:2003/api/v1/cart/"+id,{},{headers:{"x-auth-token":token}})
             window.location.assign("/cart")
         }} className="checkout-btn">Add to cart</div>
         <form></form>

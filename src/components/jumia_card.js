@@ -1,4 +1,6 @@
+import React from "react";
 import "./styles/jumia-card.css";
+
 
 const Card = ({prop}) => {
     let {img, name, price, i} = prop
