@@ -1,25 +1,31 @@
 import axios from "axios";
 import React from "react";
 import Card from "../components/cart_card";
+import CartSummary from "../components/cart_summary";
+import { getAuthToken } from "../functions/auth";
 import {authHOC} from "./HOC/auth-hoc";
+import "./styles/cart.css";
 
 
+const tokenName = process.env.REACT_APP_AUTH_TOKEN_NAME
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 class Cart extends React.Component{
-    constructor(){
-        super()
-        this.queryUrl = "http://localhost:2003/api/v1/cart"
-        this.state={
+
+        queryUrl = API_BASE_URL + "cart"
+        state={
             cart:[],
-            message:""
+            message:"",
+            btnStatus:""
         }
-    }
+
     componentDidMount = () =>{
-        const token = localStorage.getItem("x-auth-token")
+        console.log(this.delivery,this.net())
+        const token = getAuthToken()
         if(!token)return window.location.reload()
         //reloading renders authentication screen
         axios.get(this.queryUrl,{
             headers:{
-                "x-auth-token":token
+                [tokenName]:token
             }
         }).then(({data})=>{
             let counter = 0
@@ -31,13 +37,17 @@ class Cart extends React.Component{
                     quantity:1,
                     total:prod.price
                 }
-            }
-            
+            } 
             )
             this.setState({cart:collated})
         }
             )
         }
+        net = () => this.state.cart.reduce((acc,unit)=>{
+            return acc + parseInt(unit.total)
+        },0)
+
+        delivery = (Math.random()*1000).toFixed(2)
 
         updatePrice = (item) =>{
             item.total = item.info.price * item.quantity
@@ -45,15 +55,15 @@ class Cart extends React.Component{
         }
 
     removeFromCart = async(id) =>{
-        const token = localStorage.getItem("x-auth-token")
-        const respond = await axios.delete(this.queryUrl+"/"+id,{headers:{"x-auth-token":token}})
+        const token = getAuthToken()
+        const respond = await axios.delete(this.queryUrl+"/"+id,{headers:{[tokenName]:token}})
         this.setState({cart:this.state.cart.filter((el)=>{
             return el.info._id !== id
         })})
     }
 
     clearCart = async() =>{
-       const res = await axios.delete(this.queryUrl)
+       const res = await axios.delete(this.queryUrl,{headers:{[tokenName]:getAuthToken()}})
        this.setState({cart:[]})
     }
 
@@ -65,7 +75,6 @@ class Cart extends React.Component{
             }
             return itm
         })
-        console.log(newCart)
         this.setState({cart:[...newCart]})
     }
 
@@ -82,19 +91,23 @@ class Cart extends React.Component{
         this.setState({cart:newCart})
     }
 
-    purchaseCart = () =>{
+    purchaseCart = async() =>{
     // <--make api call -->
-    const toBePurchased = this.state.cart.map(({info,quantity})=>{
-        const {id} = info
-        return {id, quantity}
+    const items = this.state.cart.map(({info,quantity})=>{
+        const {_id} = info
+        return {id:_id, quantity}
     })
-
+    if(!this.state.btnStatus)return
+    const res = await axios.post(API_BASE_URL+"payment/pay",{items},{headers:{[tokenName]:getAuthToken()}})
+    const redirectUrl = res.data.data
+    if(redirectUrl)return window.location.assign(redirectUrl)
     }
 
-    purchaseCallback = () =>{
-        // <--await api call -->
-
+    handleCheckbox = (e) =>{
+        if(e.target.checked && this.net()>0)return this.setState({btnStatus:"btn-active"})
+        return this.setState({btnStatus:""})
     }
+
 
     total = this.state.cart.reduce((sum,{total})=>{
         return sum+= total
@@ -103,7 +116,7 @@ class Cart extends React.Component{
     
 
     render(){
-        return !this.state.cart.length?(<h1>no items here</h1>):this.state.cart.map(({info:data, indx, quantity, total})=>{
+        return <div className="cart">{this.state.cart.length>=1 && this.state.cart.map(({info:data, indx, quantity, total})=>{
             return <Card key={indx}
              id={data._id}
              indx={indx}
@@ -115,8 +128,28 @@ class Cart extends React.Component{
                  decrement = {this.decrement}
                  removeFromCart = {this.removeFromCart}
                   />
-        })
+        })}
+        <strong style={{
+            display:"block",
+            color:"red",
+            margin:"25px 0px 25px 85px",
+            textAlign:"left",
+            cursor:"pointer"
+        }}
+        onClick={()=>{
+            this.clearCart();
+            window.location.assign("/shop")
+        }}
+        >clear cart</strong>
+        <CartSummary net={this.net()} delivery={this.delivery} />
+        <div className="acknowledge">
+           <p>i hereby acknowledge the above bill</p>
+        <input onChange={(e)=>{this.handleCheckbox(e)}} required type={"checkbox"} /> 
+        </div>
+        <button onClick={()=>{this.purchaseCart()}} className={this.state.btnStatus}>Checkout</button>
+        </div>
     }
 }
+
  
 export default authHOC(Cart);

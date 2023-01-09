@@ -5,7 +5,7 @@ import axios from "axios";
 import "./styles/modify.css";
 
 
-const baseUrl = "http://localhost:2003/api/v1/"
+const baseUrl = process.env.REACT_APP_API_BASE_URL
 const Modify=()=> {
 
 const params = useParams()

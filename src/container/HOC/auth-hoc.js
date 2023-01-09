@@ -1,8 +1,7 @@
+import { getAuthToken } from "../../functions/auth";
 import Authenticate from "../auth";
 
 export const authHOC = (childComponent) =>{
-    const token = localStorage.getItem("x-auth-token") 
-   console.log({token})
-   localStorage.removeItem("x-auth-token")
-    return token?childComponent:Authenticate
+    const token = getAuthToken()
+    return !token?Authenticate:childComponent;
 }

@@ -1,9 +1,10 @@
-import {Component} from "react";
+import React from "react";
 import "./styles/auth.css";
 import axios from "axios";
+import { getAuthToken, setAuthToken } from "../functions/auth";
 
-const queryUrl = process.env.NODE_ENV==="production"?process.env.BASE_URL+"/auth/":"http://localhost:2003/api/v1/auth/"
-class Authenticate extends Component {
+const queryUrl = process.env.REACT_APP_API_BASE_URL+"auth/"
+class Authenticate extends React.Component {
     state = { 
         status:"login",
         email:"",
@@ -17,11 +18,15 @@ class Authenticate extends Component {
     handleStatus = () =>{
         this.state.status==="login"?this.setState({status:"register"}):this.setState({status:"login"})
     }
-    handleSubmit = async()=>{
+    handleSubmit = async(e)=>{
+        e.preventDefault()
         const url = queryUrl+this.state.status;
+        console.log(url, queryUrl)
         axios.post(url,{email:this.state.email,password:this.state.password}).then(res=>{
             const {data,token} = res.data
-            localStorage.setItem("x-auth-token",token)
+            if(!token)return console.log("could not get token")
+
+            setAuthToken(token)
             window.location.reload()
         }).catch((err)=>{
             console.log(err.response.data.message)
@@ -66,7 +71,7 @@ class Authenticate extends Component {
             </div>
         
             <br></br>
-            <div onClick={this.handleSubmit} className="submit"> Submit </div>
+            <div onClick={(e)=>this.handleSubmit(e)} className="submit"> Submit </div>
             <p className="switch-state"><span onClick={()=>this.handleStatus()} >click to {this.state.status==="login"?"register":"login"}</span></p>     
             </form>
     

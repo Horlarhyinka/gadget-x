@@ -1,0 +1,76 @@
+.history-card{
+    display: inline-block !important;
+    width: 80%;
+    margin-left:45px;
+    max-width: 850px;
+    border: 1px solid rgb(240, 240, 240);
+    padding-top: 15px;
+
+}
+
+.history-card .field{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.history-card label{
+    display: block;
+    width: 100%;
+}
+
+.history-card .field label{
+    margin: 0px;
+    width: auto;
+    display: block;
+    text-align: left;
+    margin-left: 15px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.history-card .field p{
+    margin: 0px;
+    width: auto;
+    display: block;
+    text-align: right ;
+    margin-right: 15px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.history-card .field .success{
+    color: rgb(61, 245, 24);
+}
+
+.history-card .field .failed{
+    color: red;
+}
+
+
+
+.history-card .retry{
+    display: block;
+    text-align: right;
+    margin: 25px 15px 15px 0px;
+    color: blue;
+    font-size: 14px;
+    font-weight: 550;
+
+}
+
+.history-card span{
+    display: none;
+}
+
+@media screen and (max-width:500px){
+    .history-card{
+        width: 95%;
+        margin:0px;
+    }
+
+    
+}
+
+

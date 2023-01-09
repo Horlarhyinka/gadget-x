@@ -2,16 +2,17 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./styles/preview.css"
-import axios, { Axios } from "axios";
+import axios from "axios";
 import RelatedProducts from "../components/related";
-import { authHOC } from "./HOC/auth-hoc";
 import Jumia from "../components/jumia";
+import { getAuthToken } from "../functions/auth";
 //import bgimg from "../components/bgimg.jpg"
 
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+const tokenName = process.env.REACT_APP_AUTH_TOKEN_NAME
 const Preview = () => {
     const {id} =  useParams()
-    const queryUrl = "http://localhost:2003/api/v1/products/"+id
+    const queryUrl = API_BASE_URL+"products/"+id
     const [info, setInfo] = useState()
     let [images,setImages] = useState([])
     let [curImg, setCurImg] = useState()
@@ -24,7 +25,7 @@ const Preview = () => {
         setCurImg(preview_image_url)
         setComments(comments)
     })
-    },[queryUrl])
+    },[])
 
     const commentsList = comments && comments.map(comment=>{
         let date = new Date()
@@ -41,7 +42,8 @@ const imagesList = images.map(image=>{
 })
 
     
-    return !info?<h1 className="preview-failed">unable to preview this product...</h1>:( <div className="product-preview">
+    return !info?<h1 className="preview-failed">unable to preview this product...</h1>:( 
+    <div className="product-preview">
         <img className="preview-image" src={curImg} alt={info.name} label={info.name} />
         <small>click images to preview {">>>"}</small>
         <div className="image-list">{imagesList}</div>
@@ -52,8 +54,8 @@ const imagesList = images.map(image=>{
             {commentsList}</div>:<p className="no-comment">no comments yet</p>}
         </div>
         <div onClick={()=>{
-            const token = localStorage.getItem("x-auth-token")
-            axios.post("http://localhost:2003/api/v1/cart/"+id,{},{headers:{"x-auth-token":token}})
+            const token = getAuthToken()
+            axios.post(API_BASE_URL+"cart/"+id,{},{headers:{[tokenName]:token}})
             window.location.assign("/cart")
         }} className="checkout-btn">Add to cart</div>
         <form></form>

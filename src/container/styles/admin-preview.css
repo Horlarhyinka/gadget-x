@@ -1,0 +1,48 @@
+.admin-preview .image-preview{
+    width: 50%;
+    aspect-ratio: 1;
+    border: 1px solid rgb(230, 230, 230);
+    display: inline-block;
+    margin-top: 35px;
+}
+
+.admin-preview .mode-wrapper{
+    display: block;
+    margin-bottom: 35px;
+}
+
+.admin-preview .mode-wrapper label{
+    display: inline-block;
+    text-align: left;
+    width: 80%;
+    height: 20px;
+    margin: 8px 0px;
+    font-size: 14px;
+    font-weight: 500;
+
+}
+
+.admin-preview .mode-wrapper input{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 8px 0px;
+}
+
+.admin-preview .del-wrapper{
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+
+}
+
+.admin-preview .del-wrapper button{
+    width: 120px;
+    height: 45px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: rgb(236, 236, 236);
+    border: 1px solid red;
+    color: red;
+    margin: 12px 12px;
+}

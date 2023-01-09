@@ -1,0 +1,41 @@
+.cart{
+    margin-top: 45px;
+}
+
+.cart .acknowledge{
+    display: flex;
+    text-align: left;
+    width: 80%;
+    justify-content: space-between;
+    max-width: 580px;
+    margin-left: 85px;
+}
+
+.cart .acknowledge p{
+    display: inline-block;
+    font-size: 14px;
+}
+
+.cart .acknowledge input{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 8px 3px;
+}
+
+.cart button{
+    display: block;
+    margin:25px 0px 35px 85px;
+    width:80%;
+    max-width: 580px;
+    height: 45px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(145, 145, 145);
+}
+
+.cart .btn-active{
+    background-color: orange;
+    color:white;
+}

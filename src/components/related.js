@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import "./styles/products.css";
 import "./styles/related.css";
 import { Link } from "react-router-dom";
+import ProductCard from "./product-card";
+
 
 const RelatedProducts = () => {
     const {id} = useParams()
@@ -18,14 +20,15 @@ const RelatedProducts = () => {
     
     const relatedList = related.map((product)=>{
     
-        const {_id,preview_image_url,name,price} = product
+        const {_id,preview_image_url:img, name, description, price} = product
         
         return (<Link to={`/products/${_id}`} key={_id} className="productcard">
-            <img src={preview_image_url} alt={name} label={preview_image_url} />
-            <h1>{name}</h1>
-            <strong>{price}$</strong>
-            <button className="btn-preview">buy now</button>
-            <button className="btn-cart">add to cart</button>
+           <ProductCard
+            img={img}
+            name={name}
+            description={description}
+            price={price}
+            />
         </Link >)
     })
     

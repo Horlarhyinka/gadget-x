@@ -14,7 +14,7 @@ const Card = (prop) => {
             <div>
              <h6 className="price">
                 
-            <label>price: </label> ${price}</h6>
+            <label>price: </label> ₦{price}</h6>
             <div className="quantity-container"><label>quantity: </label>
                    
                 <strong className="actual-quantity">

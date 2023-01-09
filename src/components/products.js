@@ -1,22 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./styles/products.css";
+import ProductCard from "./product-card";
 
 const Products = ({products}) => {
 
 const productsList = products.map((product)=>{
+    product.description = String("test ").repeat(4)
+   
+    const {_id,preview_image_url:img,name,price, description} = product
     
-    const {_id,preview_image_url,name,price} = product
-    
-    return (<Link to={`/products/${_id}`} key={_id} className="productcard">
-        <img src={preview_image_url} alt={name} label={preview_image_url} />
-        <h1>{name}</h1>
-        <strong>{price}$</strong>
-        <button className="btn-preview">Buy now</button>
-        <button className="btn-cart">Add to cart</button>
+    return (<Link to={`/products/${_id}`} key={_id} >
+        <ProductCard
+        name={name}
+        img={img}
+        price={price}
+        description={description}
+         />
     </Link >)
 })
-    return ( <div className="productscardlist">
+    return ( <div className="products-list">
         {productsList}
     </div> );
 }

@@ -1,0 +1,33 @@
+.cart-summary{
+    display: block;
+    margin: 25px 80px 25px 80px;
+    text-align: center;
+    max-width: 580px;
+    width: 80%;
+}
+
+.cart-summary h3{
+    display: block;
+    text-align: left;
+    margin: 45px 0px 25px 0px;
+}
+
+.cart-summary div{
+    display: inline-flex;
+    min-width: 100%;
+    text-align: left;
+    justify-content: space-between;
+}
+
+.cart-summary div label{
+    display: inline-block;
+    text-align: left;
+}
+
+.cart-summary div p{
+    display: inline-block;
+}
+
+.cart-summary div.total{
+    font-weight: 500;
+}

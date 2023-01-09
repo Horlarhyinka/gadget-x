@@ -1,5 +1,6 @@
 const path = require("path")
 const HtmlPlugin = require("html-webpack-plugin")
+const Dotenv = require("dotenv-webpack")
 
 module.exports = {
     entry:{
@@ -8,10 +9,16 @@ module.exports = {
     output:{
         path:path.resolve(__dirname,"dist"),
         filename:"main.js",
+        publicPath:"/"
     },
-    plugins:[new HtmlPlugin({template:"src/index.html"})],
+    plugins:[
+        new HtmlPlugin({template:path.resolve(__dirname,"src/index.html")}),
+        new Dotenv({path:"./.env",safe:true})],
     devServer:{
-        port:3000
+        port:3000,
+        host:"localhost",
+        open:true,
+        historyApiFallback: true
     },
     module:{
         rules:[

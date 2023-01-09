@@ -5,7 +5,8 @@ import SearchSection from "../components/search"
 import Products from "../components/products";
 import JumiaProducts from "../components/jumia";
 
-const productsUrl = "http://localhost:2003/api/v1/products"
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+const productsUrl = API_BASE_URL+"products"
 
 class Shop extends Component {
     allProducts 
@@ -16,7 +17,6 @@ class Shop extends Component {
         let allProducts = await axios(productsUrl)
         this.allProducts = allProducts.data
         this.setState({products:[...allProducts.data]})
-        console.log(this.props)
      }
      handleSearchChange = (e) =>{
         let searchField = e.target.value.trim()
