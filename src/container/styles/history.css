@@ -25,6 +25,10 @@
     
 }
 
+.history h1.no-history{
+    color: rgb(109, 109, 109);
+}
+
 .history aside{
     display: block;
     text-align: right;

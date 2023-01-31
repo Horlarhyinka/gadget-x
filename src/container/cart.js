@@ -1,8 +1,9 @@
 import axios from "axios";
 import React from "react";
+import Back from "../components/back";
 import Card from "../components/cart_card";
 import CartSummary from "../components/cart_summary";
-import { getAuthToken } from "../functions/auth";
+import { getAuthToken, authenticateResponse } from "../functions/auth";
 import {authHOC} from "./HOC/auth-hoc";
 import "./styles/cart.css";
 
@@ -19,15 +20,13 @@ class Cart extends React.Component{
         }
 
     componentDidMount = () =>{
-        console.log(this.delivery,this.net())
         const token = getAuthToken()
         if(!token)return window.location.reload()
-        //reloading renders authentication screen
-        axios.get(this.queryUrl,{
+        authenticateResponse(()=>axios.get(this.queryUrl,{
             headers:{
                 [tokenName]:token
             }
-        }).then(({data})=>{
+        })).then(({data})=>{
             let counter = 0
             const collated = data.cart.map(prod=>{
                 counter++
@@ -56,14 +55,14 @@ class Cart extends React.Component{
 
     removeFromCart = async(id) =>{
         const token = getAuthToken()
-        const respond = await axios.delete(this.queryUrl+"/"+id,{headers:{[tokenName]:token}})
+        const respond = await authenticateResponse(()=>axios.delete(this.queryUrl+"/"+id,{headers:{[tokenName]:token}}))
         this.setState({cart:this.state.cart.filter((el)=>{
             return el.info._id !== id
         })})
     }
 
     clearCart = async() =>{
-       const res = await axios.delete(this.queryUrl,{headers:{[tokenName]:getAuthToken()}})
+       const res = await authenticateResponse(()=>axios.delete(this.queryUrl,{headers:{[tokenName]:getAuthToken()}}))
        this.setState({cart:[]})
     }
 
@@ -98,7 +97,7 @@ class Cart extends React.Component{
         return {id:_id, quantity}
     })
     if(!this.state.btnStatus)return
-    const res = await axios.post(API_BASE_URL+"payment/pay",{items},{headers:{[tokenName]:getAuthToken()}})
+    const res = await authenticateResponse(()=>axios.post(API_BASE_URL+"payment/pay",{items},{headers:{[tokenName]:getAuthToken()}}))
     const redirectUrl = res.data.data
     if(redirectUrl)return window.location.assign(redirectUrl)
     }
@@ -116,7 +115,9 @@ class Cart extends React.Component{
     
 
     render(){
-        return <div className="cart">{this.state.cart.length>=1 && this.state.cart.map(({info:data, indx, quantity, total})=>{
+        return <div className="cart">
+            <Back url={"/shop"} />
+            {this.state.cart.length>=1 && this.state.cart.map(({info:data, indx, quantity, total})=>{
             return <Card key={indx}
              id={data._id}
              indx={indx}

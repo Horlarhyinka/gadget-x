@@ -93,3 +93,31 @@
 .cart-card .qty-val{
     margin: 20px 8px 12px 8px;
 }
+
+@media screen and (max-width:760px){
+
+    .cart-card{
+        display: inline-block;
+        border: 1px solid lightgray;
+    }
+
+    .cart-card .info{
+        display: block;
+    }
+
+    .cart-card .info .name{
+        display: block;
+        text-align: left;
+    }
+    .cart-card .quantity-container{
+        display: block;
+        margin: none;
+        text-align: left;
+    }
+
+    .switch-quantity{
+        text-align: center;
+    }
+
+
+}

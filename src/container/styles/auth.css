@@ -1,171 +1,85 @@
 .auth{
-    display: inline-flex;
+    display: inline-block;
+    text-align: center;
     width: 100%;
-    height: 480px;
-}
-.side-div{
-    display: inline-block;
-    width: 40%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: 100%;
 }
 
-.auth-writeup{
+.auth form{
     display: inline-block;
     text-align: center;
-    width: 90%;
-    margin-top: 85%;
-    letter-spacing: 0.1px;
-    font-weight: bolder;
-}
-.side-div .cta{
-    display: inline-block;
-    text-align: center;
-    width: 90%;
-    background-color: orange;
-    color: white;
-    font-weight: bold;
-    margin-top: 10%;
-    height: 30px;
-    padding-top: 4px;
-    border-radius: 160px;
-}
-
-
-.auth-form{
-    display: inline-block;
-    width: 58%;
-    height: 100%;
-
-}
-
-.auth-form h3{
-    display: block;
-    text-align: left;
-    margin-left: 10px;
-}
-
-.google-wrapper{
-    display: inline-flex;
-    border: 2px solid rgba(228, 228, 228, 0.61);
     width: 95%;
-    margin-bottom: 5px;
-
-}
-.g-icn{
-    display: block;
-    width: 7%;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    height: 25px;
-    align-self: center;
-    margin: 3px 2px;
-
-}
-.g-txt{
-    display: block;
-    width: 90%;
-    align-self: center;
-    height: 100%;
-    color: rgb(161, 161, 161);
-    font-weight: 500;
-    font-size: 16px;
-}
-.or{
-    display: inline-block;
-    width: 90%;
-}
-.or p{
-    display: inline-block;
-    width: 8%;
-    font-weight: 400;
-
-}
-.or hr{
-    display: inline-block;
-    width:40% ;
-    align-self: center;
-    margin:0px;
-    background-color: lightgrey;
-    
-}
-
-.or + p{
-    margin: 0px;
-    text-align: left;
-    margin-left: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 0.1px;
-    color: lightgrey;
-}
-.auth-form label{
-    display: block;
-    margin-left: 10px;
-    text-align: left;
-    font-weight: bold;
-    font-size: 19px;
-    color: rgba(0, 0, 0, 0.658);
-}
-
-.auth-form input{
-    display: block;
-    margin-left: 10px;
-    width: 95%;
-    height:25px;
+    max-width: 480px;
     border: none;
-    background-color: rgb(192, 192, 192);
+    box-shadow: 2px 2px 12px lightgray;
+    height: auto;
+    padding: 0px;
+    margin-top: 35px;
+}
+
+.auth form .write-up{
+    display: block;
+    text-align: left;
+    margin: 25px 5%;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(124, 124, 124);
+    letter-spacing: 0.4px;
+    line-height: 24px;
 
 }
-.auth-form input:focus,select:focus{
+
+.auth form .form-status{
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    margin: 35px 5% 25px 5%;
+    color: rgb(37, 37, 37);
+}
+
+.auth form label{
+    display: block;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 450;
+    margin: 25px 10px 15px 5%;
+}
+
+.auth form .forget{
+display: block;
+margin: 3px 5% 25px 10px;
+text-align: right;
+font-size: 14px;
+font-weight: 500;
+color: red;
+}
+
+.auth form input{
+    display: inline-block;
+    text-align: left;
+    padding-left: 5px;
+    margin: 0px;
+    width: 90%;
+    height: 35px;
+    border: 1.5px solid lightgray;
+
+}
+
+.auth form input:focus{
     outline: none;
 }
 
-.submit{
-    height: 28px;
+.auth form button{
+    display: inline-block;
+    margin: 35px 0px 25px 0px;
+    text-align: center;
+    width:93%;
+    height: 40px;
+    border: none;
+    font-size: 16px;
+    font-weight: 550;
+    letter-spacing: 0.2px;
     color: white;
-    font-weight: bold;
-    background-color: orange;
-    display: inline-block;
-    width: 95%;
-    align-self: center;
-    padding-top: 3px;
-}
-
-.switch-state{
-    margin: 0px;
-}
-
-.switch-state span{
-    color: blue;
-}
-
-.remember{
-    display: inline-block;
-    text-align: left;
-    width: 50%;
-    margin: 0px;
-    margin-bottom: 6px;
-}
-.remember input{
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin: 0px;
-    margin-left: 10px;
-}
-.remember label{
-    display: inline-block;
-    font-size: 14px;
-    font-weight: 200;
-    align-self: center;
-    margin: 0px;
-    margin-left: 2px;
-}
-.remember p{
-    margin: 0px;
-    display: inline-block;
-    width: 50%;
-    text-align: right;
+    background-color: blue;
+    border-radius: 2px;
 }

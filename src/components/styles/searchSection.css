@@ -8,10 +8,18 @@
 .searchfield{
     display: inline-block;
     width: 98%;
-    height: 25px;
+    height: 35px;
     margin: 2px 2px 0px 2px ;
     border: 2px solid lightgrey;
 }
+
+.searchfield::placeholder{
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(180, 180, 180);
+    letter-spacing: 0.25px;
+}
+
 .activecat{
     display: block;
     text-align: right;

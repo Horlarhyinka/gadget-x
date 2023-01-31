@@ -2,3 +2,18 @@
     display: inline-block;
     text-align: center;
 }
+
+.admin-home .new-admin{
+    display: inline-block;
+    width: 98%;
+    text-align: right;
+    height: 40px;
+}
+
+.admin-home .new-admin button{
+    width: 120px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: 450;
+    margin:35px 0px;
+}

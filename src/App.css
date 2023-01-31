@@ -33,6 +33,16 @@
   color: #61dafb;
 }
 
+.null{
+  color: lightgray;
+  font-size: 18px;
+  font-weight: 500;
+  display: block;
+  text-align: center;
+  margin: 35px 0px;
+  width: 100%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

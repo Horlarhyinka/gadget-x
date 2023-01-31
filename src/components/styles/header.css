@@ -1,17 +1,39 @@
 @import url('http://fonts.cdnfonts.com/css/montserrat');
 
 .header{
-
+    display: inline-flex;
     background-color: black;
-    width: 100%;
+    width: calc(100% - 30px);
     max-width: 100%;
-    margin-bottom: 0px;
+    height: 45px;
+    padding:5px 15px;
     margin: 0px;
 }
+
+.header .logo{
+    height: 35px;
+    width: 130px;
+    display: block;
+    margin:8px 35px;
+}
+
 .header h1{
     text-align: center;
     color: white;
     font-weight: bold;
     padding: 5px;
     margin: 0px;
+}
+
+.header .hamburger{
+    display: none;
+    width: 45px;
+    height: 30px;
+    margin: 8px 12px;
+}
+
+@media screen and (max-width:830px){
+    .header .hamburger{
+        display: inline-block;
+    }
 }

@@ -1,0 +1,75 @@
+.comment-card{
+    display: inline-block;
+    align-content: center;
+    width: 98%;
+    height: auto;
+    margin-top: 15px;
+    box-shadow: 2px 2px 12px 8px rgb(241, 241, 241);
+}
+
+.comment-card .badge{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: brown;
+    margin: calc(5%/2) 2px;
+    align-content: space-around;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px;
+}
+
+.badge span{
+    font-size: 22px;
+    font-weight: 600;
+    color: white;
+    margin: 12px;
+}
+
+.comment-card .body-section{
+    width: 100%;
+    background-color: white;
+    height: 85% !important;
+    max-height: 85%;
+}
+
+.comment-card .body-section .info{
+    display: inline-block;
+    width: 80%;
+    height: 85%;
+}
+
+.comment-card div.info p{
+    display: block;
+    text-align: left;
+    margin-left: 15px;
+}
+
+.comment-card p.email{
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(109, 109, 109);
+    margin: 25px 0px 15px 5px;
+}
+
+.comment-card .body{
+    text-align: left;
+    display: inline-block;
+    max-width: 100%;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.comment-card aside{
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(177, 177, 177);
+}
+
+.comment-card .reactions{
+    
+}

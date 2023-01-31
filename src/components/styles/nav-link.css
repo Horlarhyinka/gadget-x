@@ -1,0 +1,97 @@
+.nav-link{
+    display: inline-flex;
+    width: calc(100% - 45px);
+    color: white;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.nav-link li{
+    list-style: none;
+    display: inline-block;
+    margin: 2px 25px;
+    font-size: 16px;
+}
+
+.nav-link a:hover{
+    text-decoration: underline;
+}
+
+.auth-nav .auth-nav a:hover{
+    text-decoration: none;
+}
+
+.nav-link a{
+    color: white;
+    text-decoration: none;
+}
+
+.nav-link ul{
+    width: 50%;
+    align-self: center;
+    margin: 12px ;
+    padding: 0px;
+}
+
+.nav-link .auth-nav{
+    display: inline-flex;
+    text-align: right;
+    width: calc(50% - 40px);
+    min-width: 30%;
+    margin-right: 15px;
+}
+
+.nav-link .auth-nav button{
+    display: inline-block;
+    margin: 7px 12px;
+    font-size: 16px;
+    color: white;
+    height: 35px;
+    min-width: 120px;
+    background: none;
+    border-radius: 35px;
+}
+
+.nav-link button.register{
+    background-color: blue;
+    border: none;
+    box-shadow: none;
+}
+
+.nav-link button.login{
+    border: 1px solid rgb(121, 121, 121);
+}
+
+.nav-link .auth-nav .icn{
+    font-size: 22px;
+    margin: 15px 20px 12px;
+    color: white !important;
+}
+
+.nav-link .auth-nav .icn:hover{
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.nav-link .icn.logout{
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.hamburger{
+    display: inline-block;
+    width: 35px;
+    height: 30px;
+}
+
+.auth-nav .authenticated{
+    width: 240px;
+}
+
+@media screen and (max-width:830px){
+    .nav-link ul{
+        display: none;
+    }
+    .nav-link .auth-nav{
+        display: none;
+    }
+    
+}

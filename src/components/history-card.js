@@ -1,4 +1,5 @@
 import React from "react";
+import { numberToPrice } from "../functions/factory";
 import "./styles/history-card.css";
 
 const HistoryCard = ({history,retry}) => {
@@ -6,7 +7,7 @@ const HistoryCard = ({history,retry}) => {
 const {status, items, createdAt} = history
 
 
-    const itemsList =()=> items.length >= 1?items.map(({name, description, price, _id, quantity})=><div key={_id} className="field"><label>{name+"- "+ description + "("+ quantity +")"}</label><p>₦{(price*quantity).toFixed(2)}</p></div>):<p>null</p>;
+    const itemsList =()=> items.length >= 1?items.map(({name, description, price, _id, quantity})=><div key={_id} className="field"><label>{name+"- "+ description + "("+ quantity +")"}</label><p>₦{numberToPrice((price*quantity).toFixed(2))}</p></div>):<p>null</p>;
     const list = itemsList()
 
     return ( <div className="history-card">

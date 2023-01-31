@@ -8,7 +8,7 @@
     max-height: 350px;
     border-radius: 8px !important;
     margin: 16px 8px;
-    box-shadow: 2px 3px 8px lightgray;
+    box-shadow: 2px 3px 8px rgb(240, 240, 240);
     align-self: center;
 
 }
@@ -24,18 +24,20 @@
 
 .product-card p.name-description{
     display: inline-block;
+    word-wrap: break-word;
     max-width: 100%;
     min-width: 100%;
     color:black;
-    font-size: 16px;
-    font-weight: 450;
+    font-size: 14px;
+    font-weight: 480;
 }
 
 .product-card p.price{
     display: inline-block;
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
+    margin: 8px 0px 16px;
 }
 
 @media screen and (max-width:450px){

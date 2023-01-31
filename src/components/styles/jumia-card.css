@@ -23,6 +23,7 @@
     font-weight: 400;
     font-size: 14px;
     margin:12px 4px;
+    word-wrap: break-word;
 }
 .jumia-card strong{
     font-weight: bold;

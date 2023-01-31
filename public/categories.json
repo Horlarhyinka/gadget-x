@@ -1,0 +1,22 @@
+[
+    {
+        "type":"Phones & Tablets",
+        "image":"https://res.cloudinary.com/lahri/image/upload/v1674327000/gadget-x/Rectangle_9-1_f29pw9.png"
+    },
+    {
+        "type":"Laptops & Macbooks",
+        "image":"https://res.cloudinary.com/lahri/image/upload/v1674327002/gadget-x/Rectangle_9_uzx4wk.png"
+    },
+    {
+        "type":"Headphones",
+        "image":"https://res.cloudinary.com/lahri/image/upload/v1674327000/gadget-x/Rectangle_9-2_yjibmy.png"
+    },
+    {
+        "type":"Powerbanks",
+        "image":"https://res.cloudinary.com/lahri/image/upload/v1674327000/gadget-x/Rectangle_9-3_lpcnti.png"
+    },
+    {
+        "type":"Others",
+        "image":"https://res.cloudinary.com/lahri/image/upload/v1674327069/gadget-x/Rectangle_9_1_m8jwal.png"
+    }
+]

@@ -4,12 +4,14 @@ import {Component} from "react"
 import SearchSection from "../components/search"
 import Products from "../components/products";
 import JumiaProducts from "../components/jumia";
+import Back from "../components/back";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 const productsUrl = API_BASE_URL+"products"
 
 class Shop extends Component {
     allProducts 
+    initial = new URLSearchParams(window.location.search)?.get("initial")
     state = { 
         products:[],
      } 
@@ -34,10 +36,12 @@ class Shop extends Component {
      }
     
     render() { 
+        
         return (<div className="shop" >
-            <SearchSection handleSearchChange={this.handleSearchChange} />
+            <Back />
+            <SearchSection initial={this.initial || "All"} handleSearchChange={this.handleSearchChange} />
             <Products products={this.state.products} />
-            <JumiaProducts keyword={"gadget"} />
+            <JumiaProducts keyword={this.initial || "gadget"} />
         </div>);
     }
 }

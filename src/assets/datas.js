@@ -27,25 +27,21 @@ export const tops = [
     ]
 
     export const categories = [
-        //{
-        //     "type":"all",
-        //     "image":"https://res.cloudinary.com/lahri/image/upload/v1665240948/ykcvxv9lb9uysnt758n2.avif"
-        // },
         {
             "type":"Phones & Tablets",
-            "image":"https://res.cloudinary.com/lahri/image/upload/v1665240948/ykcvxv9lb9uysnt758n2.avif"
+            "image":"https://res.cloudinary.com/lahri/image/upload/v1674327000/gadget-x/Rectangle_9-1_f29pw9.png"
         },
         {
             "type":"Laptops & Macbooks",
-            "image":"https://res.cloudinary.com/lahri/image/upload/v1665241044/niscuzgn3ge6ra8wdoiy.jpg"
+            "image":"https://res.cloudinary.com/lahri/image/upload/v1674327002/gadget-x/Rectangle_9_uzx4wk.png"
         },
         {
             "type":"Headphones",
-            "image":"https://res.cloudinary.com/lahri/image/upload/v1665241044/niscuzgn3ge6ra8wdoiy.jpg"
+            "image":"https://res.cloudinary.com/lahri/image/upload/v1674327000/gadget-x/Rectangle_9-2_yjibmy.png"
         },
         {
             "type":"Powerbanks",
-            "image":"https://res.cloudinary.com/lahri/image/upload/v1665241044/niscuzgn3ge6ra8wdoiy.jpg"
+            "image":"https://res.cloudinary.com/lahri/image/upload/v1674327000/gadget-x/Rectangle_9-3_lpcnti.png"
         }
     ]
 

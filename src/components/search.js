@@ -3,11 +3,9 @@ import "./styles/searchSection.css";
 import {useEffect, useState} from "react";
 import { cats } from "../assets/datas";
 
-import { useParams } from "react-router-dom";
-
-const SearchSection = ({handleSearchChange}) => {
+const SearchSection = ({handleSearchChange, initial}) => {
     let id = 0;
-    let initialCat = "all"
+    let initialCat = initial;
     const [activeCat, setActiveCat] = useState(initialCat)
     const handleCatChange = (cat) =>{
         if(cat.toLowerCase() === "all"){
@@ -23,8 +21,6 @@ const SearchSection = ({handleSearchChange}) => {
     handleCatChange(initialCat)
     },[])
     
-    
-
     const catsList = cats.map((cat)=>{
         id++
         return(<h2 onClick={(e)=>{handleCatChange(cat)}} key={id}>{cat}</h2>)})

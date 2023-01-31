@@ -7,3 +7,10 @@
     text-align: left;
     color: rgb(27, 27, 27);
 }
+
+.admin-products input{
+    display: inline-block;
+    width: 95%;
+    height: 35px;
+    margin: 15px 0px 35px 0px;
+}

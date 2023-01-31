@@ -1,81 +1,258 @@
-
 .home{
-    text-align: center;
     display: inline-block;
     width: 100%;
-}
-.home .prev_img{
-    display: inline-block;
-    min-width: 350px;
-    width: 94%;
-    height: 350px;
-    max-height: 420px;
-}
-.home .writeup{
-    color: black;
-    display: inline-block;
-    font-size: 28px;
-    width: 100%;
-    text-align: center;
-}
-.home .cta{
-    display: inline-block;
-    color:white !important;
-    background-color: black;
-    width: 35%;
-    justify-content: space-evenly;
-    text-align: center;
-    height: 35px;
-    max-height: 35px;
-    align-items: center;
-    margin-top: 12px;
-    cursor: pointer;
-}
-.home .cta span{
-display: inline-block;
-width: 60%;
-max-width: 60%;
-height: fit-content;
-font-size: 24px;
-color: white;
-}
-.home .cta .arr{
-    display: inline-block;
-    width: 20%;
-    max-width: 20%;
-    font-size: 18px;
-    font-weight: bold;
-}
-
- .previewsection{
-    padding-bottom: 30px;
-    display: inline-block;
-    text-align: center;
     margin: 0px;
-    width: fit-content;
-    height: 350px;
-    max-height: 350px;
-    background: linear-gradient(190deg,rgb(255, 235, 205),white,white);
- }
+}
 
-    .previewsection{
-        height: 450px;
-        max-height: 450px;
-        width: 100% !important;
-        min-width: 100% !important;
-        text-align: center;
+.home .preview-banner{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    /* background-color: black; */
+    color: white;
+    background: url('https://res.cloudinary.com/lahri/image/upload/v1674320126/gadget-x/homebanner_maghbb.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.home .preview-banner h1{
+    font-size: 28px;
+    margin-top: 35px;
+}
+
+.home .preview-banner p{
+    font-size: 14px;
+}
+
+.home .cta{
+    width: 135px;
+    height: 40px;
+    margin: 35px 0px;
+    display: inline-block;
+    border: none;
+    border-radius: 2px;
+    background-color: blue;
+    color: white;
+    font-size: 14px;
+    font-weight: 480;
+    letter-spacing: .8px;
+    background-size: auto;
+}
+
+
+.home .preview-banner ul{
+    display: inline-block !important;
+    list-style: none;
+    width: 100% !important;
+    justify-content: space-evenly;
+    margin: 0px !important;
+    padding: 0px;
+}
+
+.home .preview-banner li, .home .preview-banner li img{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 15px -5px;
+}
+
+.home .preview-banner li img{
+    margin: 0px;
+}
+
+.home .search{
+    display: inline-block;
+    width: 100%;
+    padding: 0px;
+}
+
+.home .search ul{
+    width: 100%;
+    padding: 0px;
+    margin: 0px 0px 25px;
+    max-height: 180px;
+    overflow-y: scroll;
+}
+
+.home .search li{
+    display: inline-block;
+    width: calc(100% - 30px);
+    height: auto;
+    min-height: 35px;
+    background-color: rgba(165, 165, 165, 0.616);
+}
+
+.home .search li:hover{
+    background-color: rgba(165, 165, 165, 0.808);
+}
+
+.home .search a{
+    color: rgb(37, 37, 37);
+    text-decoration: none;
+    justify-content: space-between;
+}
+
+.home .search p{
+    margin: 8px 5px;
+    display: inline-block;
+}
+
+
+.home .search .name{
+    width: 70%;
+}
+
+.home .search .category{
+    width: 25%;
+}
+
+.home .search label{
+    display: block;
+    margin:25px 15px 15px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 530;
+    color: rgb(165, 165, 165);
+}
+
+.home .search input{
+    display: inline-block;
+    text-align: left;
+    padding-left: 5px;
+    width: calc(100% - 30px);
+    height: 35px;
+    margin: 0px;
+}
+
+.home .section{
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.home .section a{
+    text-decoration: none;
+}
+
+.home .section ul{
+    overflow-x: auto;
+    display: flex;
+    width: 100%;
+    clip: rect(0px, 0px, 0px, 0px);
+    max-width: 100%;
+}
+
+.home .categories li{
+    display: inline-block;
+    width: 180px;
+    min-width: 180px;
+    height: 220px;
+    min-height: 220px;
+    margin: 25px 15px;
+}
+
+.home .categories img{
+    margin: 0px;
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
+    height: 180px;
+}
+
+.home .categories li p{
+    margin: 15px 0px;
+    font-size: 16px;
+    font-weight: 550;
+    color: rgb(48, 48, 48);
+}
+
+.home .section h1{
+    display: block;
+    margin: 25px 15px 15px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.preview-banner.partner{
+    background: url("https://res.cloudinary.com/lahri/image/upload/v1674350175/gadget-x/Background_oyy2sj.png");
+    margin: 35px 0px;
+}
+
+.preview-banner.partner h1{
+    margin: 50px 0px 35px;
+}
+
+.preview-banner.partner p{
+    margin-bottom: 25px;
+}
+
+.home .partner .cta{
+    margin: 0px 0px 25px;
+    color: black;
+    background-color: white;
+}
+
+.home .preview-banner .partners{
+    display: inline-block;
+    width: 100%;
+}
+
+.home .preview-banner .partners img{
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin: 15px 10px;
+}
+
+.home .preview-banner .partners img:nth-child(2){
+    width: 70px;
+}
+
+.home .section.news-letter{
+    width: 100%;
+}
+
+.home .news-letter h1{
+    text-align: left;
+}
+
+.home .news-letter p{
+    text-align: left;
+    margin: 10px 15px 25px;
+}
+
+.home .news-letter input{
+    width: calc(100% - 35px);
+    height: 35px;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.home .news-letter input:focus{
+    outline: none;
+    border: 2.5px solid rgb(136, 136, 136);
+}
+
+.home .news-letter button{
+    display: inline-block;
+    width: 80%;
+    max-width: 250px;
+    height: 35px;
+    margin: 25px 0px;
+    border: none;
+    font-size: 16px;
+    font-weight: 550;
+    background-color: blue;
+    color: white;
+    border-radius: 2px;
+}
+
+@media screen and (max-width:570px){
+    .home .preview-banner{
+        height: auto;
+        background-size: 100% 570px;
     }
-    .previewsection .writeup{
-        text-align: center;
-    }
-    .home .cta{
-        width: 200px;
-        max-width: 200px;
-    }
-    .home .prev_img{
-        width: 300px;
-        max-width: 300px;
-        height: 300px;
-        max-height: 300px;
-    }
- 
+}

@@ -1,0 +1,14 @@
+.not-found h1{
+    margin: 35px 0px 15px;
+}
+
+.not-found p{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.not-found a{
+    font-size: 14px;
+    font-weight: 530;
+    color: blue;
+}

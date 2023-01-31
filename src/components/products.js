@@ -6,8 +6,6 @@ import ProductCard from "./product-card";
 const Products = ({products}) => {
 
 const productsList = products.map((product)=>{
-    product.description = String("test ").repeat(4)
-   
     const {_id,preview_image_url:img,name,price, description} = product
     
     return (<Link to={`/products/${_id}`} key={_id} >

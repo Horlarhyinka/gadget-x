@@ -1,33 +1,27 @@
 import axios from "axios";
-import React from "react";
+import React, {createRef} from "react";
 import "./styles/new-product-form.css";
 import Select from "react-select";
 import Joi from "joi";
+import { getAdminAuthToken } from "../functions/auth";
 
 const CLOUDINARY_PRESET = "stghocrq";
 const cloudName = "lahri";
 const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+const tokenName = process.env.REACT_APP_AUTH_TOKEN_NAME
 
 const queryUrl = process.env.REACT_APP_API_BASE_URL + "products";
 
 class CreateProductForm extends React.Component{
 
-    state = { 
-        newProduct:{
-            name:null,
-            price:null,
-            description:null,
-            category:null,
-            quantity:null,
-            preview_image_url:null,
-            more_images_url:null
-        },
-        files:{
-          preview_image:null,
-          more_images:null
-        },
+      state = {
         validated:false
       }
+      newProduct = {}
+        files={
+                preview_image:null,
+                more_images:null
+              }
 
       schema = {
           category:Joi.string().required(),
@@ -37,54 +31,49 @@ class CreateProductForm extends React.Component{
           quantity:Joi.number().min(1).required(),
           preview_image:Joi.array().min(1).required(),
           more_images: Joi.array().min(1).required(),
-          
         }
-      validateInput = () =>{
 
-        const {category, name, description, price, quantity} = this.state.newProduct
-        const {preview_image, more_images} = this.state.files
+      validateInput = () =>{
+        const {category, name, description, price, quantity} = this.newProduct
+        const {preview_image, more_images} = this.files
         const res = Joi.object(this.schema).validate({category, name, description, price, quantity, preview_image, more_images})
-        console.log(res)
         if(!res.error){
           return this.setState({validated:true})
         }
-        return this.setState({validated:false})
+          return this.setState({validated:false})
       }
-
-      showMessage = (type) =>{
-        alert(`this is a ${type} message`)
-      } 
-
+ 
       updateField= (e) =>{
-        this.setState({newProduct:{...this.state.newProduct, [e.target.id]:e.target.value}},this.validateInput())
-        
+        const id = e.target.id
+        this.newProduct = {...this.newProduct,[id]:e.target.value};
+        return;
       }
 
       handleSelect = (e) =>{
-        this.setState({newProduct:{...this.state.newProduct, category:e.value}},this.validateInput())
+        this.newProduct = {...this.newProduct, category:e.value};
+        return this.validateInput()
       }
 
       updateFile =(e) =>{
-        this.setState({files:{...this.state.files,[e.target.id]:Array.from(e.target.files)}},this.validateInput())
-        
+        this.files = {...this.files,[e.target.id]:Array.from(e.target.files)};
+        return;
       }
 
       handleSubmit = async(e) =>{
+        e.preventDefault()
         function extractUrl(data){
           return data.map(({data})=>data.secure_url)
         }
-        e.preventDefault()
         if(!this.state.validated) return;
         try {
-        let preview_image_url = await this.uploadFiles(this.state.files.preview_image)
+        let preview_image_url = await this.uploadFiles(this.files.preview_image)
         preview_image_url = extractUrl(preview_image_url)[0]
-        console.log({preview_image_url})
-        let more_images_url = await this.uploadFiles(this.state.files.more_images)
+        let more_images_url = await this.uploadFiles(this.files.more_images)
         more_images_url = extractUrl(more_images_url)
-        this.setState({newProduct:{...this.state.newProduct,preview_image_url,more_images_url}})
-        console.log(this.state.newProduct)
-        if(!this.state.newProduct.more_images_url || !this.state.newProduct.preview_image_url)throw Error("error: could not create product")
-        const newProduct = await axios.post(queryUrl,this.state.newProduct)
+        this.newProduct = {...this.newProduct,preview_image_url,more_images_url}
+        if(!this.newProduct.more_images_url || !this.newProduct.preview_image_url)throw Error("error: could not create product")
+        const {data} = await axios.post(queryUrl,this.newProduct,{headers:{[tokenName]:getAdminAuthToken()}})
+        if(data) return window.location.reload()
         } catch (error) {
           return this.showMessage("error")
         }
@@ -109,8 +98,7 @@ class CreateProductForm extends React.Component{
         {value:"Power Banks",label:"Power Banks"},
         {value:"Others",label:"Others"},
       ]
-        return ( <form onChange={()=>{this.validateInput()}} className={"new-product"}>
-
+        return ( <form onChange={this.validateInput} onSubmit={(e)=>{e.preventDefault()}} className={"new-product"}>
                     <p className="head">Welcome Admin</p>
                     <p className="writeup">dont forget to add product descriptions and other sales promoting info.</p>
                     <label>category</label>
@@ -121,7 +109,7 @@ class CreateProductForm extends React.Component{
                     className="select"
                      />
                      <label className="qty">quantity</label>
-                    <input type={"number"} min={1} id={"quantity"} onChange={(e)=>{this.updateField(e)}} />
+                    <input type={"number"} min={1} id={"quantity"} onChange={(e)=>this.updateField(e)} />
                     <label>name</label>
                     <input type={"text"} id={"name"} onChange={(e)=>{this.updateField(e)}} />
                     <label>price</label>
@@ -134,8 +122,6 @@ class CreateProductForm extends React.Component{
                     <label>more images</label>
                     <input type={"file"} className="file" multiple id={"more_images"} onChange={(e)=>{this.updateFile(e)}} />
                     <button className={`${this.state.validated?"active":""}`} onClick={(e)=>{this.handleSubmit(e)}} >submit</button>
-
-
                 </form> )
     }
     
