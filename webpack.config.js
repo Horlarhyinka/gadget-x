@@ -43,6 +43,11 @@ module.exports = {
             }
         ]
     },
+    performance: {
+        assetFilter: function (assetFilename) {
+          return assetFilename.endsWith('.js');
+        },
+      },
     mode:"development"
 
 }
