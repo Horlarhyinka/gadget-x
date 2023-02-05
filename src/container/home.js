@@ -5,6 +5,7 @@ import ProductCard from "../components/product-card";
 import amazon from "../assets/amazon.png";
 import jumia from "../assets/jumia.png";
 import { Link } from "react-router-dom";
+import { categories } from "../assets/datas";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
@@ -20,9 +21,7 @@ class Home  extends React.Component {
     searchRef = React.createRef()
     
     componentDidMount = async() =>{
-      const queryUrl = API_BASE_URL + "products"
-      let categories = await fetch("categories.json")
-      categories = await categories.json()
+      const queryUrl = API_BASE_URL + "products";
       const products = await axios.get(queryUrl)
       this.setState({categories,latest:products.data.sort((a,b)=>a.updatedAt > b.updatedAt).slice(0,21),products:products.data})
     }
@@ -41,7 +40,7 @@ class Home  extends React.Component {
       let i = 0;
       return <ul>
         {
-        this.state.categories.map(({image,type})=>{
+        categories.map(({image,type})=>{
           i++;
           return <li key={i} ><Link to={"/shop?initial="+type.replace("&","and")}><img src={image} /><p>{type}</p></Link></li>
         })}

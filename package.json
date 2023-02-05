@@ -7,12 +7,13 @@
     "@iconify/react": "^4.1.0",
     "dotenv-webpack": "^8.0.1",
     "file-loader": "^6.2.0",
+    "json-loader": "^0.5.7",
     "vercel": "^28.15.0",
     "webpack-dev-server": "^4.11.1"
   },
   "scripts": {
     "start": "webpack serve",
-    "build":"webpack serve --mode production",
+    "build": "webpack serve --mode production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "predeploy": "npm run build",
     "deploy": "vercel"
