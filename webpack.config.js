@@ -15,7 +15,7 @@ module.exports = {
         new HtmlPlugin({template:path.resolve(__dirname,"src/index.html")}),
         new Dotenv({path:"./.env",safe:true})],
     devServer:{
-        port:process.env.PORT,
+        port:process.env.REACT_APP_PORT,
         host:"localhost",
         open:true,
         historyApiFallback: true
