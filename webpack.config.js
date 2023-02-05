@@ -44,9 +44,9 @@ module.exports = {
         ]
     },
     performance: {
-        assetFilter: function (assetFilename) {
-          return assetFilename.endsWith('.js');
-        },
+        hints: false,
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000
       },
     mode:"development"
 
