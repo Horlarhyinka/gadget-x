@@ -4,6 +4,7 @@ import "./styles/new-product-form.css";
 import Select from "react-select";
 import Joi from "joi";
 import { getAdminAuthToken } from "../functions/auth";
+import Consent from "./consent";
 
 const CLOUDINARY_PRESET = "stghocrq";
 const cloudName = "lahri";
@@ -15,7 +16,8 @@ const queryUrl = process.env.REACT_APP_API_BASE_URL + "products";
 class CreateProductForm extends React.Component{
 
       state = {
-        validated:false
+        validated:false,
+        dialog:null
       }
       newProduct = {}
         files={
@@ -31,6 +33,12 @@ class CreateProductForm extends React.Component{
           quantity:Joi.number().min(1).required(),
           preview_image:Joi.array().min(1).required(),
           more_images: Joi.array().min(1).required(),
+        }
+
+        formRef = createRef()
+
+        setDialog = (info)=>{
+          this.setState({dialog:info})
         }
 
       validateInput = () =>{
@@ -73,9 +81,13 @@ class CreateProductForm extends React.Component{
         this.newProduct = {...this.newProduct,preview_image_url,more_images_url}
         if(!this.newProduct.more_images_url || !this.newProduct.preview_image_url)throw Error("error: could not create product")
         const {data} = await axios.post(queryUrl,this.newProduct,{headers:{[tokenName]:getAdminAuthToken()}})
-        if(data) return window.location.reload()
+        if(data){
+          this.formRef.current.reset()
+          this.setDialog({message:"upload successful", status:"success"})
+        }
         } catch (error) {
-          return this.showMessage("error")
+          this.formRef.current.reset()
+          return this.setDialog({message:"upload failed", status:"failed"})
         }
 
       }
@@ -98,7 +110,7 @@ class CreateProductForm extends React.Component{
         {value:"Power Banks",label:"Power Banks"},
         {value:"Others",label:"Others"},
       ]
-        return ( <form onChange={this.validateInput} onSubmit={(e)=>{e.preventDefault()}} className={"new-product"}>
+        return ( <form onChange={this.validateInput} ref={this.formRef} onSubmit={(e)=>{e.preventDefault()}} className={"new-product"}>
                     <p className="head">Welcome Admin</p>
                     <p className="writeup">dont forget to add product descriptions and other sales promoting info.</p>
                     <label>category</label>
@@ -122,6 +134,7 @@ class CreateProductForm extends React.Component{
                     <label>more images</label>
                     <input type={"file"} className="file" multiple id={"more_images"} onChange={(e)=>{this.updateFile(e)}} />
                     <button className={`${this.state.validated?"active":""}`} onClick={(e)=>{this.handleSubmit(e)}} >submit</button>
+                    <Consent message={this.state.dialog?.message} status={this.state.dialog?.status} controller={()=>this.setState({dialog:null})} />
                 </form> )
     }
     

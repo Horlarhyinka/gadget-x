@@ -11,6 +11,7 @@
     height: 35px;
     margin: 2px 2px 0px 2px ;
     border: 2px solid lightgrey;
+    font-size: 16px;
 }
 
 .searchfield::placeholder{
@@ -26,7 +27,8 @@
 }
 .activecat h2{
     display: inline-block;
-    padding: 3px;
+    height: 25px;
+    padding: 8px 12px 6px;
     width: auto;
     min-width: 45px;
     text-align: center;
@@ -35,9 +37,8 @@
     margin-bottom: 0px;
     background-color: lightgrey;
     border-radius: 30px;
-    font-size: 18px;
-    padding-left: 8px;
-    padding-right: 8px;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
     
 }
@@ -45,4 +46,19 @@
     display: block;
     margin-top: 20px;
     text-align: left;
+
+}
+
+.allcats h2{
+    font-size: 16px;
+    font-weight: 500;
+    height: 25px;
+    padding: 8px 12px 6px;
+}
+
+.allcats h2.selected{
+    background-color: rgb(134, 134, 134);
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
 }

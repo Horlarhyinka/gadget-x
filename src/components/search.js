@@ -1,31 +1,30 @@
 import React from "react";
 import "./styles/searchSection.css";
 import {useEffect, useState} from "react";
-import { cats } from "../assets/datas";
 
-const SearchSection = ({handleSearchChange, initial}) => {
+
+const SearchSection = ({handleSearchChange, initial, categories}) => {
     let id = 0;
     let initialCat = initial;
     const [activeCat, setActiveCat] = useState(initialCat)
     const handleCatChange = (cat) =>{
         if(cat.toLowerCase() === "all"){
             setActiveCat("")
-            handleSearchChange({"target":{"value":""}})
+            handleSearchChange("")
         }else{
           setActiveCat(cat) 
-          handleSearchChange({"target":{"value":cat}})
+          handleSearchChange(cat)
         }  
     }
-    
     useEffect(()=>{
     handleCatChange(initialCat)
     },[])
     
-    const catsList = cats.map((cat)=>{
+    const catsList = [{type:"All"},...categories].map((cat)=>{
         id++
-        return(<h2 onClick={(e)=>{handleCatChange(cat)}} key={id}>{cat}</h2>)})
+        return(<h2 className={`${(cat.type?.toLowerCase() === activeCat?.toLowerCase())||(!activeCat && cat.type?.toLowerCase() === "all")?"selected":""}`} onClick={(e)=>{handleCatChange(cat.type)}} key={id}>{cat.type}</h2>)})
     return ( <div className="searchsection">
-<input className="searchfield"  type={"text"} onChange={(e)=>{handleSearchChange(e)}} placeholder="search products/categories" />
+<input className="searchfield"  type={"text"} onChange={(e)=>{handleSearchChange(e.target.value)}} placeholder="search products/categories" />
 <div className="activecat">
     <h2>{!activeCat?initialCat:activeCat}</h2>
     <div className="allcats">

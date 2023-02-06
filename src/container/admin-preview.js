@@ -1,9 +1,10 @@
 import axios from "axios";
-import React from "react";
+import React, {useState} from "react";
 import { useParams } from "react-router-dom";
 import { authenticateResponse, getAdminAuthToken } from "../functions/auth";
 import Back from "../components/back"
 import "./styles/admin-preview.css"
+import Consent from "../components/consent";
 
 const api_base_url = process.env.REACT_APP_API_BASE_URL;
 const tokenName = process.env.REACT_APP_AUTH_TOKEN_NAME
@@ -11,9 +12,9 @@ const tokenName = process.env.REACT_APP_AUTH_TOKEN_NAME
 const AdminPreview = () => {
     const {id} = useParams()
     const queryUrl = api_base_url+"products/"+id;
-    const [product,setProduct] = React.useState({product:"",quantity:"",price:"",description:""})
-
-    const [disabled,setDisabled] = React.useState(true)
+    const [product,setProduct] = useState({product:"",quantity:"",price:"",description:""})
+    const [dialog, setDialog] = useState(null)
+    const [disabled,setDisabled] = useState(true)
 
     React.useEffect(()=>{
         authenticateResponse(()=>axios.get(queryUrl)).then(res=>{
@@ -29,8 +30,14 @@ const AdminPreview = () => {
 
     const handleSubmit = async(e)=>{
         e.preventDefault()
-        const res = await authenticateResponse(()=>axios.put(queryUrl,{...product},{headers:{[tokenName]:getAdminAuthToken()}}))
-        alert("update successful")
+        try {
+            await authenticateResponse(()=>axios.put(queryUrl,{...product},{headers:{[tokenName]:getAdminAuthToken()}}))
+            return setDialog({message:"update failed", status:"failed"})
+        } catch (error) {
+            return setDialog({message:error.response.data.message,status:"failed"})
+        }
+
+        return setDialog({message:"update successful", status:"success"})
     }
 
     const handleDelete = async(e) =>{
@@ -62,6 +69,7 @@ const AdminPreview = () => {
     <textarea id="description" value={product.description || ""} disabled={disabled} maxLength={125} onChange={(e)=>{updateField(e)}}>
     </textarea>
     <button className={`${!disabled?"active":""}`} onClick={(e)=>{handleSubmit(e)}} >submit</button>
+    <Consent message={dialog?.message} status={dialog?.status} controller={()=>setDialog(null)} />
     <button onClick={(e)=>{handleDelete(e)}} className="delete">delete product</button>
 </form></div> )
 }

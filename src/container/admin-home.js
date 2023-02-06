@@ -5,14 +5,11 @@ import CreateProductForm from "../components/new-product-form";
 import "./styles/admin_home.css";
 import adminAuthHOC from "./HOC/admin-auth-hoc";
 import { Icon } from '@iconify/react';
-import { authenticateResponse, getAdminAuthToken } from "../functions/auth";
-
-
 
 class AdminHome extends React.Component {
     queryUrl = process.env.REACT_APP_API_BASE_URL + "products"
     state = { 
-        products:[]
+        products:[],
      } 
      products = []
 

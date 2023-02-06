@@ -25,8 +25,7 @@
 .product-card p.name-description{
     display: inline-block;
     word-wrap: break-word;
-    max-width: 100%;
-    min-width: 100%;
+    max-width: 80%;
     color:black;
     font-size: 14px;
     font-weight: 480;
@@ -34,6 +33,7 @@
 
 .product-card p.price{
     display: inline-block;
+    width: 100%;
     color: black;
     font-size: 14px;
     font-weight: 600;

@@ -5,7 +5,8 @@ import ProductCard from "../components/product-card";
 import amazon from "../assets/amazon.png";
 import jumia from "../assets/jumia.png";
 import { Link } from "react-router-dom";
-import { categories } from "../assets/datas";
+import categories from "../assets/categories";
+import Consent from "../components/consent";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
@@ -15,32 +16,42 @@ class Home  extends React.Component {
       categories:[],
       newsEmail:null,
       results:[],
-      products:null
+      products:null,
+      dialog:null
     } 
     newsLetterRef = React.createRef()
     searchRef = React.createRef()
+
+    setDialog = (info) =>{
+      this.setState({dialog:info})
+    }
     
     componentDidMount = async() =>{
       const queryUrl = API_BASE_URL + "products";
       const products = await axios.get(queryUrl)
-      this.setState({categories,latest:products.data.sort((a,b)=>a.updatedAt > b.updatedAt).slice(0,21),products:products.data})
+      this.setState({categories,latest:products.data.sort((a,b)=>{
+        const aFactor = new Date(a.updatedAt).getTime()
+        const bFactor = new Date(b.updatedAt).getTime()
+        return bFactor - aFactor}).slice(0,21),products:products.data})
     }
 
     handleNewsLetter = async() =>{
       const email = this.newsLetterRef.current?.value
+      const exp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
       if(!email)return;
+      if(!exp.test(email))return this.setDialog({message:"please enter a valid email",status:"info"})
       const queryUrl = API_BASE_URL + "news";
       const res = await axios.post(queryUrl,{email})
-      if(res.status !== 200)return alert("error, could not subscribe to news-letter")
+      if(res.status !== 200)return this.setDialog({message:"successful...Thank you for subscribing!!! :) ",status:"failed"})
       this.newsLetterRef.current.value = ""
-      alert("thanks for subscribing to our newsletter")
+      return this.setDialog({message:"successful...Thank you for subscribing!!! :) ", status:"success"})
     }
 
     renderCategories = () =>{
       let i = 0;
       return <ul>
         {
-        categories.map(({image,type})=>{
+        this.state.categories.map(({image,type})=>{
           i++;
           return <li key={i} ><Link to={"/shop?initial="+type.replace("&","and")}><img src={image} /><p>{type}</p></Link></li>
         })}
@@ -118,9 +129,10 @@ class Home  extends React.Component {
             </div>
           </div>
           <div className="section news-letter">
+            <Consent message={this.state.dialog?.message} status={this.state.dialog?.status} controller={()=>this.setState({dialog:null})} />
             <h1>News letter</h1>
             <p>subscribe to our newsletter and get notified about updates on our inventory.</p>
-            <input placeholder="example@gmail.com" ref={this.newsLetterRef} />
+            <input type= "email" placeholder="example@gmail.com" ref={this.newsLetterRef} />
             <button onClick={()=>this.handleNewsLetter()} >subscribe</button>
           </div>
           </div>);
