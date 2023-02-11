@@ -34,6 +34,10 @@ class AdminHome extends React.Component {
         }
      }
 
+     updateProducts = (newProduct) =>{
+        this.setState({products:[...this.state.products, newProduct]})
+     }
+
     render() {
         return (<div className="admin-home">
             <div className="new-admin"><button onClick={()=>{window.location.assign("/admin/new")}}><Icon icon="mdi:user-add" /> new admin</button></div>
