@@ -19,9 +19,7 @@ const JumiaProducts = ({keyword, displayMessage}) => {
                 return setData(res.data)
                 })
             .catch((err)=>{
-                console.log(err)
                 displayMessage({message:"could not fetch jumia data", status:"info"})
-                throw Error(err)
             })
 
     },[])

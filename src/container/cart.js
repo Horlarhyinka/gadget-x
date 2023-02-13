@@ -55,14 +55,14 @@ class Cart extends React.Component{
 
     removeFromCart = async(id) =>{
         const token = getAuthToken()
-        const respond = await authenticateResponse(()=>axios.delete(this.queryUrl+"/"+id,{headers:{[tokenName]:token}}))
+        await authenticateResponse(()=>axios.delete(this.queryUrl+"/"+id,{headers:{[tokenName]:token}}))
         this.setState({cart:this.state.cart.filter((el)=>{
             return el.info._id !== id
         })})
     }
 
     clearCart = async() =>{
-       const res = await authenticateResponse(()=>axios.delete(this.queryUrl,{headers:{[tokenName]:getAuthToken()}}))
+       await authenticateResponse(()=>axios.delete(this.queryUrl,{headers:{[tokenName]:getAuthToken()}}))
        this.setState({cart:[]})
     }
 
@@ -91,15 +91,18 @@ class Cart extends React.Component{
     }
 
     purchaseCart = async() =>{
-    // <--make api call -->
+    // <-- make api call -->
     const items = this.state.cart.map(({info,quantity})=>{
         const {_id} = info
         return {id:_id, quantity}
     })
     if(!this.state.btnStatus)return
-    const res = await authenticateResponse(()=>axios.post(API_BASE_URL+"payment/pay",{items},{headers:{[tokenName]:getAuthToken()}}))
-    const redirectUrl = res.data.data
-    if(redirectUrl)return window.location.assign(redirectUrl)
+    const {data} = await authenticateResponse(()=>axios.post(API_BASE_URL+"payment/pay",{items},{headers:{[tokenName]:getAuthToken()}}))
+                        .then(({data})=>{
+                                const redirectUrl = data.data
+                                if(redirectUrl)return window.location.assign(redirectUrl)
+                        })
+
     }
 
     handleCheckbox = (e) =>{

@@ -83,3 +83,8 @@ color: red;
     background-color: blue;
     border-radius: 2px;
 }
+
+.auth .switch-state{
+    cursor: pointer;
+    font-weight: 520;
+}

@@ -27,18 +27,7 @@ const Card = (prop) => {
             
         </div>
         </div>
-        <strong
-        style={{
-            display: "inline-block",
-            width: "100%",
-            color: "red",
-            textAlign:"right",
-            width: "75%",
-            maxWidth: "80%",
-            marginBottom:"45px",
-            cursor:"pointer"
-        }}
-        onClick={()=>{
+        <strong onClick={()=>{
             removeFromCart(id)
         }}
          className="rm-frm-cart">remove from cart</strong>

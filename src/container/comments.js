@@ -6,6 +6,7 @@ import { getAuthToken, getMail } from "../functions/auth";
 import {authHOC} from "./HOC/auth-hoc";
 import { Icon } from "@iconify/react";
 import CommentCard from "../components/comment-card";
+import Back from "../components/back";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 const tokenName = process.env.REACT_APP_AUTH_TOKEN_NAME
@@ -40,6 +41,7 @@ const Comments = () => {
             return <CommentCard key={id} email={email} id={id} body={body} updatedAt={updatedAt}  />})
     }
     return ( <div className={"comments-page"}>
+        <Back url={"/products/"+id} />
         <h1>comments</h1>
         <ul id="comments" className="comments" >
             {comments?renderComments():<h1 className="null">no comments yet</h1>}

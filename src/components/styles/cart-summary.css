@@ -31,3 +31,11 @@
 .cart-summary div.total{
     font-weight: 500;
 }
+
+@media screen and (max-width:720px){
+    .cart-summary{
+        display: inline-block;
+        width: calc(100% - 70px);
+        margin: 35px 0px;
+    }
+}

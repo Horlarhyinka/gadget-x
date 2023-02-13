@@ -7,7 +7,7 @@ const Card = ({prop}) => {
     if(name.length >120){
         name = name.slice(0,100)+"..."
     }
-    return ( <div key={i} className="jumia-card" onClick={()=>{window.open(`https://www.jumia.com.ng/catalog/?q=${name}`,"_blank")}} >
+    return ( <div key={i} className="jumia-card" onClick={()=>{window.open(`https://www.jumia.com.ng/catalog/?q=${prop.name}`,"_blank")}} >
         <img src={img} alt={name} label={name} />
         <div className="info">
             <p>{name}</p>

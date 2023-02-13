@@ -40,6 +40,7 @@ export const authenticateResponse = async(fn,url) =>{
        const response = await fn() 
        return response
     } catch (error) {
+        console.log({error})
         const {status, data} = error.response
         if(!status)return;
         if(status === 401 || data?.message?.toLowerCase().includes("unauthenticated")){

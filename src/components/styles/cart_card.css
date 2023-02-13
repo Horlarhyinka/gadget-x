@@ -1,14 +1,16 @@
 
 .cart-card-wrapper{
-    display: block;
+    display: inline-block;
     text-align: center;
     border: 1px solid green;
 }
 
-.cart-card-wrapper .rm-frm-cart{
+.rm-frm-cart{
     display: block !important;
-    width: 100%;
+    width: calc(100% - 70px);
     color: red;
+    margin: 15px 0px 25px;
+    text-align: right;
 }
 
 .cart-card{
@@ -34,8 +36,7 @@
 
 .cart-card .info{
     display: inline-flex;
-    width: 50%;
-    min-width: 400px;
+    width: 100%;
     height: 100%;
     align-items: center;
     align-self: center;
@@ -106,7 +107,7 @@
     }
 
     .cart-card .info .name{
-        display: block;
+        display: inline-block;
         text-align: left;
     }
     .cart-card .quantity-container{

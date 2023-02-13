@@ -10,7 +10,7 @@ import ProductCard from "./product-card";
 
 const RelatedProducts = () => {
     const {id} = useParams()
-    const queryUrl = `http://localhost:2003/api/v1/products/${id}/related`
+    const queryUrl = `${process.env.REACT_APP_API_BASE_URL}products/${id}/related`
     const [related, setRelated] = useState([])
     useEffect(()=>{
         axios.get(queryUrl).then(res=>{

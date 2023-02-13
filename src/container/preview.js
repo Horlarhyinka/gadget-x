@@ -5,10 +5,11 @@ import "./styles/preview.css"
 import axios from "axios";
 import RelatedProducts from "../components/related";
 import Jumia from "../components/jumia";
-import { getAuthToken } from "../functions/auth";
+import { authenticateResponse, getAuthToken } from "../functions/auth";
 import Back from "../components/back";
 import { Icon } from "@iconify/react";
 import { numberToPrice } from "../functions/factory";
+import Consent from "../components/consent";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 const tokenName = process.env.REACT_APP_AUTH_TOKEN_NAME
@@ -19,6 +20,12 @@ const Preview = () => {
     let [images,setImages] = useState([])
     let [curImg, setCurImg] = useState()
     let [comments,setComments] = useState()
+    const [dialog, setDialog] = useState(null)
+
+    const displayMessage = (info) =>{
+        setDialog(info)
+    }
+
     useEffect(()=>{
     axios.get(queryUrl).then(res=>{
         const {data} = res
@@ -71,9 +78,11 @@ const imagesList = images.map(image=>{
         </div>
     }
 
-    return !info?<h1 className="preview-failed">loading preview...</h1>:( 
+    return <div>        
+    <Consent message={dialog?.message} status={dialog?.status} controller={()=>{setDialog(null)}} />
+    <Back url={"/shop"} />
+    {!info?<h1 className="preview-failed">loading preview...</h1>:( 
     <div className="product-preview">
-        <Back url={"/shop"} />
         <img className="preview-image" src={curImg} alt={info.name} label={info.name} />
         <small>click images to preview {">>>"}</small>
         <div className="image-list">{imagesList}</div>
@@ -83,16 +92,15 @@ const imagesList = images.map(image=>{
         <div className="preview-comments">
             {renderFeedback()}
         </div>
-        <button onClick={()=>{
+        <button onClick={async()=>{
             const token = getAuthToken()
-            axios.post(API_BASE_URL+"cart/"+id,{},{headers:{[tokenName]:token}})
+            await authenticateResponse(()=>axios.post(API_BASE_URL+"cart/"+id,{},{headers:{[tokenName]:token}}),"/cart")
             window.location.assign("/cart")
         }} className="checkout-btn">Add to cart</button>
-        <form></form>
         <RelatedProducts />
-        <Jumia keyword={info.name} className="jumia" />
-        
-    </div> );
+        <Jumia displayMessage={displayMessage} keyword={info.name} className="jumia" />
+        </div>)}
+    </div> 
 }
  
 export default Preview;

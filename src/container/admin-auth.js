@@ -29,7 +29,6 @@ class AdminAuthenticate extends React.Component {
         axios.post(url,{email:this.state.email,password:this.state.password}).then(res=>{
             const {data,token} = res.data;
             if(!token)return console.log("could not get token")
-            //handle error messages later
             setAdminAuthToken(token,data?.email)
             window.location.assign("/admin")
         }).catch((err)=>{

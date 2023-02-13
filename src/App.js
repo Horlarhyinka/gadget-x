@@ -19,6 +19,7 @@ import SideNav from './components/side-nav';
 import Footer from './components/footer';
 import NotFound from './container/not-found';
 import Comments from './container/comments';
+import PaymentCallback from './container/callback'
 
 class App extends React.Component{
 state={
@@ -27,13 +28,13 @@ state={
 
 toggleNav = () =>!this.state.navOpen?this.setState({navOpen:true}):this.setState({navOpen:false})
 render(){
+  console.log("components are being rendered")
    return (
   <BrowserRouter>
   {/* <div className="App"> */}
    <Header toggleNav={this.toggleNav} />
    {this.state.navOpen && <SideNav toggleNav={this.toggleNav} />}
      <Routes >
-      <Route exact path= "/admin/login" element={<h1>admin login</h1>} />
       <Route exact path= "/admin" element={<AdminHome />} />
        <Route exact path='/admin/auth' element={<AdminAuthenticate />}/>
        <Route exact path='/admin/products/:id' element={<AdminPreview />} />
@@ -44,6 +45,7 @@ render(){
        <Route exact path='/' element={<Home/>}/>
        <Route exact path='/products/:id' element={<Preview />} />
        <Route exact path='/history' element={<History />} />
+       <Route exact path='/payment/callback' element={<PaymentCallback />} />
        <Route exact path='/auth' element={<Authenticate />} />
        <Route exact path='/forget-password/:token' element={<ResetPassword/>} />
        <Route exact path='/forget-password' element={<ForgetPassword />} />

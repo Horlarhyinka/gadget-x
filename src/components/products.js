@@ -7,7 +7,6 @@ const Products = ({products}) => {
 
 const productsList = products.map((product)=>{
     const {_id,preview_image_url:img,name,price, description} = product
-    
     return (<Link to={`/products/${_id}`} key={_id} >
         <ProductCard
         name={name}

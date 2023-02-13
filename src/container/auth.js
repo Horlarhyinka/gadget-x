@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Component} from "react";
 import "./styles/auth.css";
 import axios from "axios";
 import { getAuthToken, setAuthToken } from "../functions/auth";
@@ -7,14 +7,19 @@ import Consent from "../components/consent";
 import Back from "../components/back";
 
 const queryUrl = process.env.REACT_APP_API_BASE_URL+"auth/"
-class Authenticate extends React.Component {
+class Authenticate extends Component {
     state = { 
         status:"login",
         email:"",
         password:"",
         error:false,
-        errorMessage:null
+        dialog:null
      } 
+
+     setDialog(info){
+        this.setState({dialog:info})
+     }
+
      handleField = (e) =>{
         const field =e.target.id
         return this.setState({[field]:e.target.value})
@@ -34,7 +39,7 @@ class Authenticate extends React.Component {
             pathName!=="/auth"?window.location.assign(pathName):window.location.assign("/")
         }).catch((err)=>{
             const message = err.response.data.message
-            this.setState({errorMessage:message,error:true})
+            this.setDialog({message,status:"failed"})
             
         })
     }
@@ -42,7 +47,7 @@ class Authenticate extends React.Component {
     render() { 
         return (<div className="auth" >
             <Back url={"/"} />
-            {this.state.error && (<Consent message={this.state.errorMessage || "authentication error"} status={"failed"} />)}
+            <Consent message={this.state.dialog?.message} status={this.state.dialog?.status} controller={()=>this.setState({dialog:null})} />
             <form className="auth-form">
                 <p className="write-up">we provide you with thrilling shopping experience. We care more about your comfort.</p>
             <p className="form-status">{this.state.status}</p>

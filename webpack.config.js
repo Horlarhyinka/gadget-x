@@ -53,5 +53,4 @@ module.exports = {
         maxAssetSize: 512000
       },
     mode:"development"
-
 }
