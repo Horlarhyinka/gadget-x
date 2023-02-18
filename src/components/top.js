@@ -1,5 +1,6 @@
 import React from "react";
 import { tops } from "../assets/datas";
+import { numberToPrice } from "../functions/factory";
 import "./styles/top.css"
 
 const Top = () => {
@@ -11,7 +12,7 @@ const Top = () => {
             <img className="topcardimg" src={obj.image} alt={obj["name"]} label={obj["name"]} />
             <div className="info">
             <h3>{obj["name"]}</h3>
-            <strong>{obj["price"]}$</strong>
+            <strong>{numberToPrice(obj["price"])}$</strong>
             </div>
             
             </div>)})

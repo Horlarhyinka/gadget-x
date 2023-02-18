@@ -32,7 +32,7 @@ class AdminAuthenticate extends React.Component {
             setAdminAuthToken(token,data?.email)
             window.location.assign("/admin")
         }).catch((err)=>{
-            this.setDialog({message:err.response.data.message, status:"failed"})
+            this.setDialog({message:err.response.data?.message, status:"failed"})
         })
         
     }

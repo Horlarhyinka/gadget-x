@@ -22,13 +22,13 @@ class NewAdmin extends React.Component{
     }
 
     handleDialog = (options) =>{
-        this.setState({...options})
+        this.setState({dialog:{...options}})
     }
 
     handleSubmit= async(e)=>{
         e.preventDefault()
         try {
-            const user = {...this.state.user,password:this.state.user.lastName?.toLowerCase()}
+            const user = {...this.state.user}
         const {data} = await authenticateResponse(()=>axios.post(this.queryUrl,{...user},{headers:{[tokenName]:getAdminAuthToken()}}),"/admin/auth")
         if(!data)throw Error()
         return this.handleDialog({message:"new admin created successfully", status:"success"})
