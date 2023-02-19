@@ -1,17 +1,26 @@
 export const numberToPrice = (num) =>{
-    let returnValue = "";
     num = String(num)
-    const dotIndx = num.indexOf(".")
-    if(dotIndx>0){
-        const splitted = num.split("")
-        returnValue = splitted.splice(dotIndx).join("")
-        num = splitted.splice(0,dotIndx+1).join("")
+
+    let returnVal = ""
+    let counter = 0
+    let decimal;
+    const splitted = num.split(".")
+    console.log(splitted)
+    if(splitted[1]){
+        decimal = splitted[1]
     }
-    for(let i = num.length-1;i > -1;i--){
-        returnValue = num[i] + returnValue
-        if((i+1)%3 === 0 && i !== num.length-1){
-        returnValue = "," + returnValue
+    num = splitted[0]
+    for(let i = num.length-1;i >= 0;i-- ){
+
+        if(counter === 3 && counter !== 0){
+            returnVal = "," + returnVal
+            counter = 0
         }
+        returnVal = num[i] + returnVal
+        counter++
     }
-    return returnValue;
+    if(decimal){
+        returnVal = returnVal + "." + decimal
     }
+    return returnVal
+}
