@@ -5,7 +5,6 @@ export const numberToPrice = (num) =>{
     let counter = 0
     let decimal;
     const splitted = num.split(".")
-    console.log(splitted)
     if(splitted[1]){
         decimal = splitted[1]
     }
