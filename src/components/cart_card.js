@@ -1,5 +1,6 @@
 import React from "react";
-import "./styles/cart_card.css"
+import "./styles/cart_card.css";
+import { numberToPrice } from "../functions/factory";
 
 const Card = (prop) => {
     let {name, img, id, indx, price, quantity, increment, decrement, removeFromCart} = prop
@@ -13,7 +14,7 @@ const Card = (prop) => {
             <p className="name">{name}</p>
             <div>
              <div className="price">
-            <label>price: </label> ₦{price}</div>
+            <label>price: </label> ₦{numberToPrice(price)}</div>
             <div className="quantity-container"><label>quantity: </label>
                    
                 <strong className="actual-quantity">
