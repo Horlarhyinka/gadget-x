@@ -28,7 +28,6 @@ state={
 
 toggleNav = () =>!this.state.navOpen?this.setState({navOpen:true}):this.setState({navOpen:false})
 render(){
-  console.log("components are being rendered")
    return (
   <BrowserRouter>
   {/* <div className="App"> */}

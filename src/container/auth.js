@@ -5,6 +5,7 @@ import { getAuthToken, setAuthToken } from "../functions/auth";
 import Forget from "../components/forget-password";
 import Consent from "../components/consent";
 import Back from "../components/back";
+import { Icon } from '@iconify/react';
 
 const queryUrl = process.env.REACT_APP_API_BASE_URL+"auth/"
 class Authenticate extends Component {
@@ -63,6 +64,8 @@ class Authenticate extends Component {
         
             <br></br>
             <button onClick={(e)=>this.handleSubmit(e)} className="submit"> submit </button>
+            <p>or</p>
+            <a href={queryUrl + "google"} className="oauth"><Icon icon="logos:google-icon" className="icn" width="18" height="18" /><p>continue with google</p></a>
             <p className="switch-state"><span onClick={()=>this.handleStatus()} >click to {this.state.status==="login"?"register":"login"}</span></p>     
             </form>
     

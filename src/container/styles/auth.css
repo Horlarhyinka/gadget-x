@@ -84,6 +84,30 @@ color: red;
     border-radius: 2px;
 }
 
+.auth .oauth{
+    display: inline-block;
+    border: .8px solid rgb(199, 199, 199);
+    height: 25px;
+    padding: 10px 0px;
+    width:91%;
+    cursor: pointer;
+}
+
+.oauth p{
+    width: 80%;
+    font-weight: 530;
+    margin: 0px;
+    height: 21px;
+    color: rgb(126, 126, 126);
+    display: inline-block;
+    cursor: pointer;
+}
+
+.oauth .icn{
+    display: inline-block;
+    cursor: pointer;
+}
+
 .auth .switch-state{
     cursor: pointer;
     font-weight: 520;
