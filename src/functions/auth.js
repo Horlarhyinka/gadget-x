@@ -50,3 +50,5 @@ export const authenticateResponse = async(fn,url) =>{
     return {data:null}
     }
 }
+
+//removeAuthToken()

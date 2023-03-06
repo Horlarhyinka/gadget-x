@@ -99,7 +99,7 @@ class Cart extends React.Component{
     if(!this.state.btnStatus)return
     const {data} = await authenticateResponse(()=>axios.post(API_BASE_URL+"payment/pay",{items},{headers:{[tokenName]:getAuthToken()}}))
                         .then(({data})=>{
-                                const redirectUrl = data.data
+                                const redirectUrl = data?.data
                                 if(redirectUrl)return window.location.assign(redirectUrl)
                         })
 

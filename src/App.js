@@ -20,6 +20,7 @@ import Footer from './components/footer';
 import NotFound from './container/not-found';
 import Comments from './container/comments';
 import PaymentCallback from './container/callback'
+import AuthCallback from './container/auth-callback';
 
 class App extends React.Component{
 state={
@@ -46,6 +47,7 @@ render(){
        <Route exact path='/history' element={<History />} />
        <Route exact path='/payment/callback' element={<PaymentCallback />} />
        <Route exact path='/auth' element={<Authenticate />} />
+       <Route exact path="/auth/redirect" element={<AuthCallback />} />
        <Route exact path='/forget-password/:token' element={<ResetPassword/>} />
        <Route exact path='/forget-password' element={<ForgetPassword />} />
        <Route path='/*' element={<NotFound />} />
