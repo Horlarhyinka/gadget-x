@@ -6,23 +6,26 @@ import Back from "../components/back";
 
 
 class ForgetPassword extends React.Component {
-    state = { email:"",message:undefined} 
+    state = { email:"",message:undefined, notify: false,error: false} 
     handleField = (e) =>{
-        this.setState({...this.state,[e.target.id]:e.target.value})
+        this.setState({[e.target.id]:e.target.value})
     }
     handleSubmit = async(e) =>{
+        try {
+            
         e.preventDefault()
         const res = await axios.post(process.env.REACT_APP_API_BASE_URL+"auth/forget-password",{email:this.state.email})
-        console.log(res)
-        if(res.status == 200){
-            this.setState({...this.state,message:res.data.message})
+        this.setState({message:res.data.message, notify: true, error: false})
+        } catch (error) {
+        this.setState({message:error.response?.data?.message, notify: true, error: true})
+            
         }
     }
     render() { 
         return (
     <div className="auth ">
         <Back url={"/auth"} />
-        <Consent message={this.state.message} status={"success"} />
+        <Consent message={this.state.message} controller={()=>{this.setState({message: undefined, notify: false})}} status={this.state.error?"failed":"success"} />
         <form className="forget" >
             <p className="write-up">please provide your email address</p>
             <label>Email</label>

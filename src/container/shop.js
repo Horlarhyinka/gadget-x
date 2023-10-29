@@ -7,6 +7,7 @@ import JumiaProducts from "../components/jumia";
 import Back from "../components/back";
 import categories from "../assets/categories";
 import Consent from "../components/consent";
+import { authenticateResponse } from "../functions/auth";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 const productsUrl = API_BASE_URL+"products"
@@ -16,46 +17,39 @@ class Shop extends Component {
     state = { 
         products:[],
         categories,
-        dialog:null
+        dialog:null,
+        requestTotal: 0,
+        currentSearch: ""
      } 
-
-    allProducts 
     initial = new URLSearchParams(window.location.search)?.get("initial")
-
+    requestCount = 2
+    requestPage = 1
+    category = "all"
+    queryUrl = `${API_BASE_URL}products/?count=${this.requestCount}&&page=${this.requestPage}&&category=${this.category}`
      toggleDialog = (details) =>{
         this.setState({dialog:details})
      }
-
      componentDidMount = async() =>{
-        axios.get(productsUrl).then(({data})=>{
-                this.allProducts = data 
-                this.setState({products:[...data],categories})
-                this.handleSearchChange(this.initial)
+        authenticateResponse(()=>axios.get(this.queryUrl))
+        .then(({data})=>{
+                this.setState({products:[...data], requestTotal: data.total})
         }).catch(err=>console.log(err.response))
      }
-     handleSearchChange = (value) =>{
-        let searchField = value?.trim()?.toLowerCase().replace("&","and")
-        if(searchField === "all"){
-            searchField = ""
-        }
-        if(!this.allProducts){
-            axios.get(productsUrl).then(res=>{
-            return this.setState({products:res.data.filter(prod=>prod.category.includes(searchField))})
-            })
-            return
-        }
-        let newProducts = this.allProducts.filter(({category, price, name, description})=>{
-            category = category?.toLowerCase().trim()
-            name = name?.toLowerCase().trim()
-            description = description?.toLowerCase().trim()
-            price = parseInt(price)
-            return (
-                category?.includes(searchField) || searchField?.includes(category)
-             || description?.includes(searchField) || searchField?.includes(description)
-             || name?.includes(searchField) || searchField.includes(name)
-             || Math.abs(parseInt(price) - parseInt(searchField)) <= 10)
-        })
-        this.setState({products:[...newProducts]})
+     handleSearch = async(category, search) =>{
+      const queryUrl = `${API_BASE_URL}products/?count=${this.requestCount}&&page=${this.requestPage}&&category=${category}&&search=${search}`
+      this.category = category
+        const result = await axios.get(queryUrl)
+        const products = result.data?.data
+        Array.isArray(products) && this.setState({products, requestTotal: result.data.total, currentSearch: search})
+     }
+
+     handleLoadMore = async()=>{
+      this.requestPage += 1
+      const queryUrl = `${API_BASE_URL}products/?count=${this.requestCount}&&page=${this.requestPage}&&category=${this.category}`
+      authenticateResponse(()=>axios.get(queryUrl))
+      .then(({data})=>{
+         this.setState({products:[...this.state.products, ...data.data, ], requestTotal: data.total})
+      }).catch(err=>console.log(err.response))
      }
     
     render() {
@@ -64,10 +58,14 @@ class Shop extends Component {
             <Back />
             <SearchSection
              initial={this.initial || "All"}
-              categories={this.state.categories}
-               handleSearchChange={this.handleSearchChange} />
+              categories={categories}
+               handleSearchChange={this.handleSearch} />
+               {this.state.currentSearch && <p style={{color: "lightgray"}} >
+                  {this.state.requestTotal} results for "{this.state.currentSearch}"</p>}
             <Products products={this.state.products} />
-            <JumiaProducts displayMessage={this.toggleDialog} keyword={this.initial || "gadget"} />
+            {this.state.requestTotal - this.state.products?.length > 0 && <button className="more" onClick={this.handleLoadMore} >load more</button>}
+
+            <JumiaProducts displayMessage={this.toggleDialog} keyword={this.state.currentSearch?.trim().length?this.state.currentSearch:this.category} />
         </div>);
     }
 }

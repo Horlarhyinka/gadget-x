@@ -22,14 +22,13 @@ const JumiaProducts = ({keyword, displayMessage}) => {
                 displayMessage({message:"could not fetch jumia data", status:"info"})
             })
 
-    },[])
-
-    const list = data.map((prod)=>{
+    },[keyword])
+    const list = Array.isArray(data) && data.map((prod)=>{
                     return <Card key={prod.i} prop={prod} />
                 })
     return (<div className="jumia-wrapper">
-            <label className="jumia-head-label">from jumia 
-            </label>
+            <h1 className="sub-header">from jumia 
+            </h1>
              <img className="jumia-head-logo" src={jumia_image_url} alt="jumia-logo" />
             <img className="jumia-head-logo" src={jumia_image_url} alt="jumia-logo" />
             <img className="jumia-head-logo" src={jumia_image_url} alt="jumia-logo" />

@@ -17,8 +17,10 @@ const Comments = () => {
     const email = getMail()
     const headerToken = {[tokenName]:getAuthToken()}
 
+    const queryUrl = `${API_BASE_URL}products/${id}/comments`
+
     React.useEffect(()=>{
-        axios.get(API_BASE_URL+"products/comments/"+id,{headers:headerToken}).then((res)=>{
+        axios.get(queryUrl,{headers:headerToken}).then((res)=>{
             const {data} = res;
             if(data.length < 1)return setComments(null)
             return setComments(data.reverse())
@@ -29,7 +31,6 @@ const Comments = () => {
         const body = commentRef.current.value?.trim()
         if(!body)return;
         //api call
-        const queryUrl = API_BASE_URL+"products/"+ id + "/comment";
         const {data} = await axios.post(queryUrl,{email,body},{headers:headerToken})
         setComments(data.data.sort((a,b)=>b.updatedAt-a.updatedAt))
         commentRef.current.value = null
@@ -42,11 +43,10 @@ const Comments = () => {
     }
     return ( <div className={"comments-page"}>
         <Back url={"/products/"+id} />
-        <h1>comments</h1>
-        <ul id="comments" className="comments" >
+        <ul className="comments" >
             {comments?renderComments():<h1 className="null">no comments yet</h1>}
         </ul>
-            <input ref={commentRef} type={"text"} />
+            <input ref={commentRef} placeholder="type a comment" type={"text"} />
             <button onClick={()=>handleComment()} className="send"><Icon className="icn" icon="ri:send-plane-fill" color="white" /></button>
             </div> )
         }

@@ -1,12 +1,14 @@
 import axios from "axios";
 import React from "react";
-import "./styles/home.css";
+import "./styles/home0.css";
+
 import ProductCard from "../components/product-card";
-import amazon from "../assets/amazon.png";
-import jumia from "../assets/jumia.png";
 import { Link } from "react-router-dom";
 import categories from "../assets/categories";
 import Consent from "../components/consent";
+import image1 from "../../public/gadgets-img-01.png";
+import ReviewCard from "../components/review-card";
+import reviews from "../assets/reviews";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
@@ -17,22 +19,49 @@ class Home  extends React.Component {
       newsEmail:null,
       results:[],
       products:null,
-      dialog:null
+      dialog:null,
+      productsCount: 0
     } 
+    requestSize = 2
+    requestPage = 1
     newsLetterRef = React.createRef()
     searchRef = React.createRef()
+
+    productsQueryUrl = API_BASE_URL + `products?count=${this.requestSize}&&page=${this.requestPage}`
 
     setDialog = (info) =>{
       this.setState({dialog:info})
     }
     
     componentDidMount = async() =>{
-      const queryUrl = API_BASE_URL + "products";
-      const products = await axios.get(queryUrl)
-      this.setState({categories,latest:products.data.sort((a,b)=>{
+      try{
+      const response = await axios.get(this.productsQueryUrl)
+      const products = response.data.data
+      this.setState({productsCount: response.data.total})
+      this.setState({categories,latest:products.sort((a,b)=>{
         const aFactor = new Date(a.updatedAt).getTime()
         const bFactor = new Date(b.updatedAt).getTime()
         return bFactor - aFactor}).slice(0,21),products:products.data})
+      }catch(ex){
+        return this.setDialog({message: ex.response?.data?.message || "Network error", status:"failed"})
+      }
+    }
+
+    handleLoadMore = async() =>{
+      if(!this.state.latest.length)return
+      this.requestPage++
+      try{
+        const response = await axios.get(this.productsQueryUrl)
+        const products = response.data.data
+        this.setState({productsCount: response.data.total})
+        this.setState({categories,latest:[...this.state.latest,...products.sort((a,b)=>{
+          const aFactor = new Date(a.updatedAt).getTime()
+          const bFactor = new Date(b.updatedAt).getTime()
+          return bFactor - aFactor
+        })]})
+        }catch(ex){
+          return this.setDialog({message: ex.response?.data?.message || "Network error", status:"failed"})
+        }
     }
 
     handleNewsLetter = async() =>{
@@ -49,92 +78,81 @@ class Home  extends React.Component {
 
     renderCategories = () =>{
       let i = 0;
-      return <ul>
+      return <ul className="categories" >
         {
-        this.state.categories.map(({image,type})=>{
+        categories?.map(({image,type, description})=>{
           i++;
-          return <li key={i} ><Link to={"/shop?initial="+type.replace("&","and")}><img src={image} /><p>{type}</p></Link></li>
+          return <li key={i} ><Link to={"/shop?initial="+type.replace("&","and")}><img src={image} />
+          <div><p className="type" >
+            {type}</p><p className="description" >{description}</p></div>
+          </Link></li>
         })}
       </ul>
     }
 
     renderLatest = () =>{
-      return <ul>
+      return <ul >
         {
           this.state.latest.map(({_id:id, name, description,preview_image_url:img , price}) =><Link key={id} to={"/products/"+id} ><ProductCard id={id} img={img} name={name} description={description} price={price} /></Link>)
         }
       </ul>
     }
 
-    renderSearchResults = () =>{
-      return <ul>
+    renderReviews = () =>{
+      return <ul style={{display: "flex", overflowX: "scroll"}} >
         {
-        this.state.results?.map(({_id:id, name, description, category})=>{
-        if((name+description)?.length > 60){
-          description = description.slice(0,(61-name.length))
-        }
-      return <li key={id} ><Link to={`/products/${id}`} >
-                  <p className="name">{name} - {description}</p>
-                  <p className="category">{category}</p>
-                  </Link>
-              </li>})
+          reviews.map(review=><ReviewCard userName={review.name} avatar={review.avatar} comment={review.comment} />)
         }
       </ul>
     }
 
-    updateSearchResult = () =>{
-      const value = this.searchRef.current.value?.toLowerCase().trim()
-      if(!value)return this.setState({results:[]});
-      return this.setState({results:this.state.products.filter(({name, category})=>{
-        name = name?.toLowerCase()
-        category = category?.toLowerCase()
-        return name?.includes(value) || value.includes(name) || category?.includes(value) || value.includes(category)})})
-    }
-
     render() { 
         return (<div className="home">
-          <div className="preview-banner">
-            <div className="writeup">
-              <h1>Shopping made easier.</h1>
-              <p>premium products with uptimized shopping experience.</p>
-              <Link to={"/shop"} ><button className="cta" >start shopping</button></Link>
-            </div>
-            <ul>
-              <li><img src={"https://res.cloudinary.com/lahri/image/upload/v1674320076/gadget-x/Ellipse_1_qthaq9.png"} /></li>
-              <li><img src={"https://res.cloudinary.com/lahri/image/upload/v1674320076/gadget-x/Ellipse_6_ryru28.png"} /></li>
-              <li><img src={"https://res.cloudinary.com/lahri/image/upload/v1674320076/gadget-x/Ellipse_2_hstin9.png"} /></li>
-              <li><img src={"https://res.cloudinary.com/lahri/image/upload/v1674320076/gadget-x/Ellipse_3_arspwg.png"} /></li>
-            </ul>
-          </div>
-          <div className="search" >
-            <label>search products or categories</label>
-            <input ref={this.searchRef} onChange={()=>this.updateSearchResult()} />
-            {this.renderSearchResults()}
-          </div>
-          <div className="section categories" >
-            <h1>Categories</h1>
-            {this.renderCategories()}
-          </div>
-          <div className="section latest" >
-            <h1>Latest</h1>
-            {this.renderLatest()}
-          </div>
-          <div className="preview-banner partner" >
-            <h1>Our partners</h1>
-            <p>we uptimize customers satisfaction by collaborating with leading e-commerce companies and sharing data to improve shopping experience.</p>
-            <Link to={"/shop"} ><button className="cta">start shopping</button></Link>
-            <div className="partners">
-              <img src={amazon} alt={"amazon"} />
-              <img src={jumia} alt={"jumia"} />
-            </div>
-          </div>
-          <div className="section news-letter">
             <Consent message={this.state.dialog?.message} status={this.state.dialog?.status} controller={()=>this.setState({dialog:null})} />
-            <h1>News letter</h1>
-            <p>subscribe to our newsletter and get notified about updates on our inventory.</p>
-            <input type= "email" placeholder="example@gmail.com" ref={this.newsLetterRef} />
-            <button onClick={()=>this.handleNewsLetter()} >subscribe</button>
+          <section className="preview" >
+          <div className="write-up" >
+          <h1>Discover Luxury in Gadgets</h1>
+          <p>We provide guaranteed, secure and reliable shopping experience. We are well known for our ability to deliver.</p>
+          
+            <Link to={"/shop"} ><button className="cta" >shop now</button></Link></div>
+            <img src={image1} alt="" />
+          </section>
+          <br></br>
+            <h1 className="sub-header" style={{textAlign: "left"}} >Categories</h1>
+            {this.renderCategories()}
+          <h1 className="sub-header" ></h1>
+          <br></br>
+            <h1 className="sub-header">Trending products.</h1>
+            <p >here are some trending products you should try</p>
+            {this.renderLatest()}
+            {this.state.productsCount - this.state.latest?.length > 0 && <button className="more" onClick={this.handleLoadMore} >load more</button>}
+          <h1 className="sub-header"  > what people say about us. </h1>
+          <p> here are some reviews from our clients.</p>
+          {this.renderReviews()}
+          <h1 className="sub-header">FAQs</h1>
+          <div className="faqs" >
+            <details>
+              <summary>Can I return the product if it's not up to my expectations?</summary>
+              <p>yes, you can return the product within 14 days after delivery.</p>
+            </details>
+            <details>
+              <summary>Can I return the product if it's not up to my expectations?</summary>
+              <p>yes, you can return the product within 14 days after delivery.</p>
+            </details>
+            <details>
+              <summary>Can I return the product if it's not up to my expectations?</summary>
+              <p>yes, you can return the product within 14 days after delivery.</p>
+            </details>
+            <details>
+              <summary>Can I return the product if it's not up to my expectations?</summary>
+              <p>yes, you can return the product within 14 days after delivery.</p>
+            </details>
           </div>
+            <Consent message={this.state.dialog?.message} status={this.state.dialog?.status} controller={()=>this.setState({dialog:null})} />
+            <h1 className="sub-header" >subscribe to our newsletter</h1>
+            <p>subscribe to our newsletter and get notified about updates on our inventory.</p>
+            <input className="news-letter" type= "email" placeholder="example@gmail.com" ref={this.newsLetterRef} />
+            <button className="news-letter" onClick={()=>this.handleNewsLetter()} >subscribe</button>
           </div>);
     }
 }

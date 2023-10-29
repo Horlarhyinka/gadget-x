@@ -5,44 +5,50 @@ import CreateProductForm from "../components/new-product-form";
 import "./styles/admin_home.css";
 import adminAuthHOC from "./HOC/admin-auth-hoc";
 import { Icon } from '@iconify/react';
+import { authenticateResponse } from "../functions/auth";
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 class AdminHome extends React.Component {
-    queryUrl = process.env.REACT_APP_API_BASE_URL + "products"
+    requestCount = 2
     state = { 
         products:[],
+        requestTotal: 0,
      } 
-     products = []
+     requestPage = 1
+     getUrl = (obj) =>`${API_BASE_URL}products/?count=${ this.requestCount }&&page=${obj?.requestPage || this.requestPage}&&search=${obj?.search || ""}`
 
      componentDidMount = async() =>{
-        const {data} = await axios.get(this.queryUrl)
-        this.products = data
-        this.setState({products:data})
+       const data = await this.requestProducts(this.getUrl())
+        this.setState({products:data.data, requestTotal: data.total})
      }
 
-     handleSearch = (e) =>{
-        const val = remChar(e.target.value)
-        const products = this.products.filter(({name, description, price, category})=>{
-            name = remChar(name)
-            description = remChar(description)
-            category = remChar(category)
-            price = parseInt(price)
-            return name?.includes(val) || val?.includes(name) || description?.includes(val) || val?.includes(description) || val?.includes(category) || category?.includes(val) || price - parseInt(val) <= Math.abs(1000)
-        })
-        this.setState({products})
-        function remChar(val){
-            return val?.toLowerCase().replace(/[\-\.\s]/,"")
-        }
+     requestProducts = async(url) =>{
+      const {data} = await axios.get(url)
+      return data
      }
 
-     updateProducts = (newProduct) =>{
-        this.setState({products:[...this.state.products, newProduct]})
+     handleSearch = async(search) =>{
+        this.requestPage = 1
+        const data = await this.requestProducts(this.getUrl({search}))
+          this.requestPage = data.page
+          Array.isArray(data.data) && this.setState({products: data.data, requestTotal: data.total})
      }
+
+     handleLoadMore = async() =>{
+      this.requestPage += 1
+      const data = await this.requestProducts(this.getUrl())
+      this.requestPage = data.page
+      Array.isArray(data.data) && this.setState({products: [...this.state.products, ...data.data], requestTotal: data.total})
+   }
 
     render() {
         return (<div className="admin-home">
             <div className="new-admin"><button onClick={()=>{window.location.assign("/admin/new")}}><Icon icon="mdi:user-add" /> new admin</button></div>
             <CreateProductForm />
             <AdminProducts handleSearch={this.handleSearch} products={this.state.products} />
+            {this.state.requestTotal - this.state.products?.length > 0 && <button className="more" onClick={this.handleLoadMore} >load more</button>}
+
         </div>);
     }
 }

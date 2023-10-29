@@ -6,8 +6,8 @@ export const getAuthToken = () =>{
     return obj?.token
 }
 
-export const setAuthToken = (token, email) =>{ 
-    const obj = JSON.stringify({token, isAdmin:false, email})
+export const setAuthToken = (token, email, id) =>{ 
+    const obj = JSON.stringify({token, isAdmin:false, email, id})
     return localStorage.setItem(tokenName, obj)
 }
 
@@ -28,6 +28,11 @@ export const removeAuthToken = () =>{
 export const getMail = () =>{
     const obj = JSON.parse(localStorage.getItem(tokenName))
     return obj?.email;
+}
+
+export const getUserId = () =>{
+    const obj = JSON.parse(localStorage.getItem(tokenName))
+    return obj?.id;
 }
 
 export const logOut = () =>{

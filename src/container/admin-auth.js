@@ -28,7 +28,6 @@ class AdminAuthenticate extends React.Component {
         const url = this.queryUrl
         axios.post(url,{email:this.state.email,password:this.state.password}).then(res=>{
             const {data,token} = res.data;
-            if(!token)return console.log("could not get token")
             setAdminAuthToken(token,data?.email)
             window.location.assign("/admin")
         }).catch((err)=>{
@@ -41,8 +40,8 @@ class AdminAuthenticate extends React.Component {
         return (<div className="auth" >
             <Consent message={this.state.dialog?.message} status = {this.state.dialog?.status} controller={()=>this.setState({dialog:null})} />
             <form className="auth-form admin">
-                <p className="write-up">we appreciate your effort in providing customer satisfaction</p>
             <p className="form-status">login</p>
+                <p className="write-up">we appreciate your effort in providing customer satisfaction</p>
             <label htmlFor="email">
                 Email
             </label>

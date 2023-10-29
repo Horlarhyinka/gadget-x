@@ -1,0 +1,39 @@
+.review-card{
+    display: inline-block;
+    width: 350px;
+    min-width: 350px;
+    height: 160px;
+    padding: 8px 12px;
+    margin: 16px 8px;
+    border-radius: 8px;
+    background-color: rgb(238, 238, 238);
+}
+.review-card img{
+    width: 120px;
+    aspect-ratio: 1;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.review-card div{
+    display: inline-block;
+    width: calc(100% - 130px);
+    text-align: left;
+    padding-left: 8px;
+}
+
+.review-card h1{
+    font-size: 18px;
+    font-weight: 480px;
+    margin: 8px 2px 4px;
+    display: block;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.review-card p{
+    font-size: 14px;
+    display: block;
+    word-wrap: break-word;
+    font-weight: 450px;
+}

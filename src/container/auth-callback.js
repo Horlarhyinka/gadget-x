@@ -1,19 +1,17 @@
 import React, {Component} from "react";
 import { setAuthToken } from "../functions/auth";
+import { readCookie } from "../functions/cookie";
 
 class AuthCallback extends Component {
     state = {  } 
 
     componentDidMount = async() =>{
         const authTokenName = process.env.REACT_APP_AUTH_TOKEN_NAME
-        let token = decodeURIComponent(document.cookie)
-        const tokenPresent = token?.startsWith(authTokenName)
-        if(!tokenPresent)return window.location.assign("/auth")
-        token = token.slice(authTokenName.length + 1)
-        const splitted = token.split(";email=")
-        const authToken = splitted[0]
-        const email = splitted[1]
-        setAuthToken(authToken, email)
+        const token = readCookie(authTokenName)
+        const email = readCookie("email")
+        const id = readCookie("id")
+        // setAuthToken({cookie: token, email })
+        setAuthToken(token, email, id)
         window.location.assign("/")
     }
 

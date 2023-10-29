@@ -4,12 +4,13 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "devDependencies": {
-    "@iconify/react": "^4.1.0",
+    "@iconify/react": "^4.1.1",
     "dotenv-webpack": "^8.0.1",
     "file-loader": "^6.2.0",
     "json-loader": "^0.5.7",
-    "vercel": "^28.15.0",
-    "webpack-dev-server": "^4.11.1"
+    "vercel": "^32.4.1",
+    "webpack": "^5.89.0",
+    "webpack-dev-server": "^4.15.1"
   },
   "scripts": {
     "start": "webpack serve",
@@ -30,23 +31,24 @@
   },
   "homepage": "https://github.com/Horlarhyinka/gadget-x#readme",
   "dependencies": {
-    "@babel/preset-env": "^7.20.2",
-    "@babel/preset-react": "^7.18.6",
-    "axios": "^1.3.2",
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
+    "axios": "^1.5.1",
     "babel-core": "^6.26.3",
-    "babel-loader": "^9.1.2",
+    "babel-loader": "^9.1.3",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "cloudinary-core": "^2.13.0",
-    "css-loader": "^6.7.3",
-    "html-webpack-plugin": "^5.5.0",
-    "joi": "^17.7.0",
-    "npm-check-updates": "^16.6.3",
+    "css-loader": "^6.8.1",
+    "html-webpack-plugin": "^5.5.3",
+    "joi": "^17.11.0",
+    "npm-check-updates": "^16.14.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.0",
-    "react-select": "^5.7.0",
-    "style-loader": "^3.3.1",
-    "webpack-cli": "^5.0.1"
+    "react-router-dom": "^6.17.0",
+    "react-select": "^5.7.7",
+    "style-loader": "^3.3.3",
+    "webpack-cli": "^5.1.4"
   }
 }

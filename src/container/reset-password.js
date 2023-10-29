@@ -35,7 +35,6 @@ const ResetPassword = () =>{
          }
         const res = await axios.patch(queryUrl,{...body})   
         if(res) setResetStatus("success")
-        console.log(res.data)
         if(res.data._kind?.toLowerCase() == "admin"){
             return window.location.assign("/admin/auth")
         }

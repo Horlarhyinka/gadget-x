@@ -10,15 +10,14 @@
 }
 
 
-.jumia-head-label{
+.jumia-wrapper h1.sub-header{
     display: block;
-    text-align: left;
-    margin-left: 5px;
-    font-size: 22px;
-    font-weight: 600;
-    color: rgb(41, 41, 41);
-    margin-top: 25px;
-    margin-bottom: 12px;
+    width: calc(100% - 16px);
+    margin-left: 16px;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 35px;
+    color: rgba(0, 0, 0, 0.627);
 }
 
 .jumia-result{

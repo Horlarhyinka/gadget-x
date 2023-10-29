@@ -3,8 +3,9 @@ import React, {createRef} from "react";
 import "./styles/new-product-form.css";
 import Select from "react-select";
 import Joi from "joi";
-import { getAdminAuthToken } from "../functions/auth";
+import { authenticateResponse, getAdminAuthToken } from "../functions/auth";
 import Consent from "./consent";
+import categories from "../assets/categories";
 
 const CLOUDINARY_PRESET = "stghocrq";
 const cloudName = "lahri";
@@ -20,7 +21,7 @@ class CreateProductForm extends React.Component{
         dialog:null
       }
       newProduct = {}
-        files={
+      files = {
                 preview_image:null,
                 more_images:null
               }
@@ -80,10 +81,11 @@ class CreateProductForm extends React.Component{
         more_images_url = extractUrl(more_images_url)
         this.newProduct = {...this.newProduct,preview_image_url,more_images_url}
         if(!this.newProduct.more_images_url || !this.newProduct.preview_image_url)throw Error("error: could not create product")
-        const {data} = await axios.post(queryUrl,this.newProduct,{headers:{[tokenName]:getAdminAuthToken()}})
+        const {data} = await authenticateResponse(()=>axios.post(queryUrl,this.newProduct,{headers:{[tokenName]:getAdminAuthToken()}}))
         if(data){
           this.formRef.current.reset()
           this.setDialog({message:"upload successful", status:"success"})
+          this.setState({validated: false})
         }
         } catch (error) {
           this.formRef.current.reset()
@@ -102,17 +104,10 @@ class CreateProductForm extends React.Component{
       }
 
     render(){
-      const selectOptions = [
-        {value:"Phones and Tablets",label:"Phones and Tablets"},
-        {value:"Laptops and MacBooks",label:"Laptops and MacBooks"},
-        {value:"Headphones",label:"Headphones"},
-        {value:"Watches",label:"Watches"},
-        {value:"Power Banks",label:"Power Banks"},
-        {value:"Others",label:"Others"},
-      ]
+      const selectOptions = categories.map(category=>({value: category.type, label: category.type}))
         return ( <form onChange={this.validateInput} ref={this.formRef} onSubmit={(e)=>{e.preventDefault()}} className={"new-product"}>
                     <p className="head">Welcome Admin</p>
-                    <p className="writeup">dont forget to add product descriptions and other sales promoting info.</p>
+                    <p className="writeup">add new products to inventory.</p>
                     <label>category</label>
                     <Select 
                     onChange={(e)=>{this.handleSelect(e)}}

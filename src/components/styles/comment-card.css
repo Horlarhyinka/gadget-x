@@ -4,35 +4,30 @@
     width: 98%;
     height: auto;
     margin-top: 15px;
-    box-shadow: 2px 2px 12px 8px rgb(241, 241, 241);
+    box-shadow: 2px 2px 8px rgb(233, 233, 233);
 }
 
 .comment-card .badge{
     display: inline-block;
-    width: 35px;
-    height: 35px;
     border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    aspect-ratio: 1;
     background-color: brown;
-    margin: calc(5%/2) 2px;
-    align-content: space-around;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 8px;
+    margin: 8px;
 }
 
 .badge span{
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 600;
     color: white;
-    margin: 12px;
+    display: inline-block;
+    margin: 10px 0px;
 }
 
 .comment-card .body-section{
-    width: 100%;
-    background-color: white;
-    height: 85% !important;
-    max-height: 85%;
+    display: flex;
+    position: relative;
 }
 
 .comment-card .body-section .info{
@@ -48,7 +43,7 @@
 }
 
 .comment-card p.email{
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 500;
     color: rgb(109, 109, 109);
     margin: 25px 0px 15px 5px;
@@ -60,6 +55,8 @@
     max-width: 100%;
     width: 100%;
     word-wrap: break-word;
+    padding: 6px;
+    font-size: 14px;
 }
 
 .comment-card aside{

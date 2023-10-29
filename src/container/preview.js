@@ -5,11 +5,13 @@ import "./styles/preview.css"
 import axios from "axios";
 import RelatedProducts from "../components/related";
 import Jumia from "../components/jumia";
-import { authenticateResponse, getAuthToken } from "../functions/auth";
+import { authenticateResponse, getAuthToken, getUserId } from "../functions/auth";
 import Back from "../components/back";
 import { Icon } from "@iconify/react";
 import { numberToPrice } from "../functions/factory";
 import Consent from "../components/consent";
+import image1 from "../../public/gadgets-img-01.png";
+
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 const tokenName = process.env.REACT_APP_AUTH_TOKEN_NAME
@@ -38,43 +40,37 @@ const Preview = () => {
     })
     },[queryUrl])
 
-    const [reactionClasses, setReactionClass] = useState({like:"reaction", dislike:"reaction"})
     const handleReaction = async(e) =>{
         const type = e.target.id
         if(!type)return;
-        if(e.target.className.includes("active")){
-            setReactionClass({...reactionClasses,[reactionClasses[type]]:"reaction"})
-            return
-        }
-        const queryUrl = API_BASE_URL + `products/react/${id}?reaction=${type}`
+        const queryUrl = API_BASE_URL + `products/${id}/react?reaction=${type}`
         try {
-        const res = await axios.post(queryUrl)
+        const res = await axios.patch(queryUrl, {}, {headers: { [tokenName]: getAuthToken() } })
         setInfo(res.data)
         } catch (error) {
-                console.log(error)
-            }
-        setReactionClass({...reactionClasses, [type]:(Array.from(new Set((reactionClasses[type]+" active").split(" ")))).join(" ")})
-    }
-    const commentsList = comments && comments.map(comment=>{
-        let date = new Date()
-        const {createdAt} = comment
-        return (<div key={comment._id} className="comment">
-            <p className="comment-body">{comment.comment}</p>
-            <aside>{date.getFullYear(createdAt)}-{date.getMonth(createdAt)}-{date.getDate(createdAt)}</aside>
-        </div>)
-    })
-let i = 0
-const imagesList = images.map(image=>{
-    i++
+        if(error.response.status === 401){
+            window.location.assign("/auth")
+            return
+        }
+            }}
+
+const imagesList = images.map((image, i)=>{
     const handleClick = () => setCurImg(image)
-    return <img className="mini-image" alt="" onClick={handleClick} src={image} key={i} id={image} />
+    return <img className="mini-image" alt="" onClick={handleClick} src={image1} key={i} id={image} />
 })
 
     const renderFeedback = () =>{
+        const userId = getUserId()
         return <div className="reactions">
             <Link to={`/products/${id}/comments#comments`} id="" className={"reaction"}><Icon icon="uis:comment-dots" /><p>{comments?.length} comment{comments?.length>1?"s":""}</p></Link>
-            <div id="like" onClick={(e)=>handleReaction(e)} className={reactionClasses.like}><Icon icon="mdi:like" /><p>{info?.reactions?.like} like{info?.reactions?.like>1?"s":""}</p></div>
-            <div id="dislike" onClick={(e)=>handleReaction(e)}  className={reactionClasses.dislike} ><Icon icon="mdi:dislike" /><p>{info?.reactions?.dislike} dislike{info?.reactions?.dislike>1?"s":""}</p></div>
+            <div id="like" onClick={(e)=>handleReaction(e)} className={`reaction ${info.reactions.likes.includes(userId)?"active":""}`}>
+                <Icon id="like" onClick={(e)=>handleReaction(e)} icon="mdi:like" />
+                <p>{info?.reactions?.likes.length} like{info?.reactions?.likes.length>1?"s":""}</p>
+            </div>
+            <div id="dislike" onClick={(e)=>handleReaction(e)}  className={`reaction ${info.reactions.dislikes.includes(userId)?"active":""}`} >
+                <Icon id="dislike" onClick={(e)=>handleReaction(e)} icon="mdi:dislike" />
+                <p>{info?.reactions?.dislikes.length} dislike{info?.reactions?.dislikes.length>1?"s":""}</p>
+            </div>
         </div>
     }
 
@@ -84,10 +80,10 @@ const imagesList = images.map(image=>{
     {!info?<h1 className="preview-failed">loading preview...</h1>:( 
     <div className="product-preview">
         <img className="preview-image" src={curImg} alt={info.name} label={info.name} />
-        <small>click images to preview {">>>"}</small>
+        <br></br>
         <div className="image-list">{imagesList}</div>
         <p className="name">{info.name}</p>
-        <p className="description">{info.description}</p>
+        <p className="description">{info.description} here is a product description just for testing</p>
         <p className="preview-price">₦{numberToPrice(info.price)}</p>
         <div className="preview-comments">
             {renderFeedback()}
