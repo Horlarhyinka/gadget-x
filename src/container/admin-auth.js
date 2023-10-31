@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/auth.css";
 import axios from "axios";
-import { getAuthToken, setAdminAuthToken, setAuthToken } from "../functions/auth";
+import { setAdminAuthToken } from "../functions/auth";
 import Forget from "../components/forget-password";
 import Consent from "../components/consent";
 

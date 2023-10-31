@@ -10,7 +10,6 @@ class AuthCallback extends Component {
         const token = readCookie(authTokenName)
         const email = readCookie("email")
         const id = readCookie("id")
-        // setAuthToken({cookie: token, email })
         setAuthToken(token, email, id)
         window.location.assign("/")
     }

@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import "./styles/home0.css";
-
 import ProductCard from "../components/product-card";
 import { Link } from "react-router-dom";
 import categories from "../assets/categories";
@@ -22,7 +21,7 @@ class Home  extends React.Component {
       dialog:null,
       productsCount: 0
     } 
-    requestSize = 2
+    requestSize = 10
     requestPage = 1
     newsLetterRef = React.createRef()
     searchRef = React.createRef()

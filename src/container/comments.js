@@ -42,12 +42,12 @@ const Comments = () => {
             return <CommentCard key={id} email={email} id={id} body={body} updatedAt={updatedAt}  />})
     }
     return ( <div className={"comments-page"}>
-        <Back url={"/products/"+id} />
-        <ul className="comments" >
-            {comments?renderComments():<h1 className="null">no comments yet</h1>}
-        </ul>
-            <input ref={commentRef} placeholder="type a comment" type={"text"} />
-            <button onClick={()=>handleComment()} className="send"><Icon className="icn" icon="ri:send-plane-fill" color="white" /></button>
+                <Back url={"/products/"+id} />
+                <ul className="comments" >
+                    {comments?renderComments():<h1 className="null">no comments yet</h1>}
+                </ul>
+                    <input ref={commentRef} placeholder="type a comment" type={"text"} />
+                <button onClick={()=>handleComment()} className="send"><Icon className="icn" icon="ri:send-plane-fill" color="white" /></button>
             </div> )
         }
  

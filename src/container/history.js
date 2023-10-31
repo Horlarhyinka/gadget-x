@@ -21,7 +21,7 @@ class History extends React.Component {
      retry = async(items) =>{
         // <--make api call -->
        items =items.map(({_id,quantity})=>({id:_id, quantity}))
-        const res = await axios.post(queryUrl,{items},{headers:{"x-auth-token":getAuthToken()}})
+        const res = await axios.post(retryUrl,{items},{headers:{"x-auth-token":getAuthToken()}})
         const redirectUrl = res.data.data
         if(redirectUrl)return window.location.assign(redirectUrl)
         }

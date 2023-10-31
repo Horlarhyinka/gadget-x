@@ -1,16 +1,13 @@
 import React,{Component} from "react";
 import "./styles/auth.css";
 import axios from "axios";
-import { getAuthToken, setAuthToken } from "../functions/auth";
+import { setAuthToken } from "../functions/auth";
 import Forget from "../components/forget-password";
 import Consent from "../components/consent";
 import Back from "../components/back";
 import { Icon } from '@iconify/react';
-import { readCookie } from "../functions/cookie";
 
 const queryUrl = process.env.REACT_APP_API_BASE_URL+"auth/";
-
-const tokenName = process.env.REACT_APP_AUTH_TOKEN_NAME
 
 class Authenticate extends Component {
     state = { 

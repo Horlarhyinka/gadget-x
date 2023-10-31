@@ -10,7 +10,6 @@ import Consent from "../components/consent";
 import { authenticateResponse } from "../functions/auth";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
-const productsUrl = API_BASE_URL+"products"
 
 class Shop extends Component {
 
@@ -22,7 +21,7 @@ class Shop extends Component {
         currentSearch: ""
      } 
     initial = new URLSearchParams(window.location.search)?.get("initial")
-    requestCount = 2
+    requestCount = 10
     requestPage = 1
     category = "all"
     queryUrl = `${API_BASE_URL}products/?count=${this.requestCount}&&page=${this.requestPage}&&category=${this.category}`

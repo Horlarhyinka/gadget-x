@@ -5,18 +5,17 @@ import CreateProductForm from "../components/new-product-form";
 import "./styles/admin_home.css";
 import adminAuthHOC from "./HOC/admin-auth-hoc";
 import { Icon } from '@iconify/react';
-import { authenticateResponse } from "../functions/auth";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 class AdminHome extends React.Component {
-    requestCount = 2
+    requestCount = 10
     state = { 
         products:[],
         requestTotal: 0,
-     } 
+     }
      requestPage = 1
-     getUrl = (obj) =>`${API_BASE_URL}products/?count=${ this.requestCount }&&page=${obj?.requestPage || this.requestPage}&&search=${obj?.search || ""}`
+     getUrl = (obj) =>`${API_BASE_URL}products/?count=${ this.requestCount }&&page=${obj?.requestPage || this.requestPage}&&search=${obj?.search || "all"}`
 
      componentDidMount = async() =>{
        const data = await this.requestProducts(this.getUrl())
@@ -48,7 +47,6 @@ class AdminHome extends React.Component {
             <CreateProductForm />
             <AdminProducts handleSearch={this.handleSearch} products={this.state.products} />
             {this.state.requestTotal - this.state.products?.length > 0 && <button className="more" onClick={this.handleLoadMore} >load more</button>}
-
         </div>);
     }
 }
