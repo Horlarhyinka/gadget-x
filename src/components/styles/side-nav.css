@@ -25,24 +25,6 @@
     border-radius: 1px solid red;
 }
 
-.side-nav .info .badge{
-    display: inline-block;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: brown;
-    margin: 0px;
-    align-items: center;
-    align-content: space-around;
-    padding: 8px;
-}
-
-.side-nav .info .badge span{
-    font-size: 22px;
-    font-weight: 600;
-    color: white;
-    margin: 12px;
-}
 
 .side-nav .info .mail{
     font-size: 14px;
@@ -108,10 +90,6 @@
     width: 30px;
     height: 30px;
     margin: 3px 8px;
-}
-
-.side-nav .close img:hover{
-    border: 0.8px solid rgb(48, 48, 48);
 }
 
 .side-nav ul{

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import {getMail, logOut} from "../functions/auth";
 import AuthNav from "./auth-nav";
 import { Icon } from "@iconify/react";
+import Badge from "./badge";
 
 const SideNav = ({toggleNav}) => {
     const mail = getMail()
@@ -12,7 +13,7 @@ const SideNav = ({toggleNav}) => {
     return ( <div className="side-nav">
         <div className="close"><img onClick={()=>toggleNav()} src={close} alt="close"/></div>
         {!mail?<AuthNav toggleNav={toggleNav} />:<div className="info">
-            <div className="badge"><span>{initial}</span></div>
+            <Badge initial={initial} />
             <p className="mail">{mail}</p>
             <button onClick={()=>{logOut()}}>logout</button>
         </div>}

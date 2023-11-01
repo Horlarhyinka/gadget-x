@@ -23,7 +23,7 @@
     float: left;
     width: 35%;
     margin: 35px 4px 16px 30px;
-    z-index: 9999;
+    /* z-index: 9999; */
     position: relative;
 }
 

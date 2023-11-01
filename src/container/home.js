@@ -14,14 +14,12 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 class Home  extends React.Component {
     state = {
       latest:[],
-      categories:[],
       newsEmail:null,
       results:[],
-      products:null,
       dialog:null,
       productsCount: 0
     } 
-    requestSize = 10
+    requestSize = 2
     requestPage = 1
     newsLetterRef = React.createRef()
     searchRef = React.createRef()
@@ -36,44 +34,62 @@ class Home  extends React.Component {
       try{
       const response = await axios.get(this.productsQueryUrl)
       const products = response.data.data
-      this.setState({productsCount: response.data.total})
-      this.setState({categories,latest:products.sort((a,b)=>{
-        const aFactor = new Date(a.updatedAt).getTime()
-        const bFactor = new Date(b.updatedAt).getTime()
-        return bFactor - aFactor}).slice(0,21),products:products.data})
+      this.setState(state=>({
+        latest:products
+        // .sort((a,b)=>{
+        // const aFactor = new Date(a.updatedAt).getTime()
+        // const bFactor = new Date(b.updatedAt).getTime()
+        // return bFactor - aFactor})
+        ,
+        productsCount: response.data?.total
+      }))
       }catch(ex){
         return this.setDialog({message: ex.response?.data?.message || "Network error", status:"failed"})
       }
     }
 
-    handleLoadMore = async() =>{
-      if(!this.state.latest.length)return
-      this.requestPage++
-      try{
-        const response = await axios.get(this.productsQueryUrl)
-        const products = response.data.data
-        this.setState({productsCount: response.data.total})
-        this.setState({categories,latest:[...this.state.latest,...products.sort((a,b)=>{
-          const aFactor = new Date(a.updatedAt).getTime()
-          const bFactor = new Date(b.updatedAt).getTime()
-          return bFactor - aFactor
-        })]})
-        }catch(ex){
-          return this.setDialog({message: ex.response?.data?.message || "Network error", status:"failed"})
-        }
-    }
 
-    handleNewsLetter = async() =>{
-      const email = this.newsLetterRef.current?.value
-      const exp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-      if(!email)return;
-      if(!exp.test(email))return this.setDialog({message:"please enter a valid email",status:"info"})
+    handleLoadMore = async () => {
+      if (!this.state.latest.length) return;
+      const newPage = this.requestPage + 1;
+      this.requestPage++
+      try {
+        const response = await axios.get(
+          API_BASE_URL + `products?count=${this.requestSize}&&page=${newPage}`
+        );
+    
+        const products = response.data.data;
+        this.setState((prevState) => ({
+          productsCount: response.data.total,
+          latest: [...prevState.latest, ...products
+          //   .sort((a, b) => {
+          //   const aFactor = new Date(a.updatedAt).getTime();
+          //   const bFactor = new Date(b.updatedAt).getTime();
+          //   return bFactor - aFactor;
+          // })
+        ],
+        }));
+      } catch (ex) {
+        return this.setDialog({
+          message: ex.response?.data?.message || "Network error",
+          status: "failed",
+        });
+      }
+    };
+    
+    handleNewsLetter = async () => {
+      const email = this.newsLetterRef.current?.value;
+      const exp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      if (!email) return;
+      if (!exp.test(email)) return this.setDialog({ message: "please enter a valid email", status: "info" });
       const queryUrl = API_BASE_URL + "news";
-      const res = await axios.post(queryUrl,{email})
-      if(res.status !== 200)return this.setDialog({message:"successful...Thank you for subscribing!!! :) ",status:"failed"})
-      this.newsLetterRef.current.value = ""
-      return this.setDialog({message:"successful...Thank you for subscribing!!! :) ", status:"success"})
-    }
+      const res = await axios.post(queryUrl, { email });
+      if (res.status !== 200) return this.setDialog({ message: "successful...Thank you for subscribing!!! :)", status: "failed" });
+      this.setState({ newsEmail: email }); // Update the email in the state
+      this.newsLetterRef.current.value = "";
+      return this.setDialog({ message: "successful...Thank you for subscribing!!! :)", status: "success" });
+    };
+    
 
     renderCategories = () =>{
       let i = 0;
@@ -92,7 +108,11 @@ class Home  extends React.Component {
     renderLatest = () =>{
       return <ul >
         {
-          this.state.latest.map(({_id:id, name, description,preview_image_url:img , price}) =><Link key={id} to={"/products/"+id} ><ProductCard id={id} img={img} name={name} description={description} price={price} /></Link>)
+          this.state.latest.map(({_id:id, name, description,preview_image_url:img , price}, i) =>{
+          return <Link key={id} to={"/products/"+id} >
+                    <ProductCard id={id} img={img} name={name} description={description} price={price} />
+                </Link>
+        })
         }
       </ul>
     }
@@ -107,7 +127,7 @@ class Home  extends React.Component {
 
     render() { 
         return (<div className="home">
-            <Consent message={this.state.dialog?.message} status={this.state.dialog?.status} controller={()=>this.setState({dialog:null})} />
+           <Consent message={this.state.dialog?.message} status={this.state.dialog?.status} controller={()=>this.setState({dialog:null})} />
           <section className="preview" >
           <div className="write-up" >
           <h1>Discover Luxury in Gadgets</h1>
@@ -125,7 +145,7 @@ class Home  extends React.Component {
             <p >here are some trending products you should try</p>
             {this.renderLatest()}
             {this.state.productsCount - this.state.latest?.length > 0 && <button className="more" onClick={this.handleLoadMore} >load more</button>}
-          <h1 className="sub-header"  > what people say about us. </h1>
+           {/* <h1 className="sub-header"  > what people say about us. </h1>
           <p> here are some reviews from our clients.</p>
           {this.renderReviews()}
           <h1 className="sub-header">FAQs</h1>
@@ -151,7 +171,7 @@ class Home  extends React.Component {
             <h1 className="sub-header" >subscribe to our newsletter</h1>
             <p>subscribe to our newsletter and get notified about updates on our inventory.</p>
             <input className="news-letter" type= "email" placeholder="example@gmail.com" ref={this.newsLetterRef} />
-            <button className="news-letter" onClick={()=>this.handleNewsLetter()} >subscribe</button>
+            <button className="news-letter" onClick={()=>this.handleNewsLetter()} >subscribe</button> */}
           </div>);
     }
 }
