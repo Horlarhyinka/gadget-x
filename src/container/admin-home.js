@@ -9,7 +9,7 @@ import { Icon } from '@iconify/react';
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 class AdminHome extends React.Component {
-    requestCount = 10
+    requestCount = 8
     state = { 
         products:[],
         requestTotal: 0,

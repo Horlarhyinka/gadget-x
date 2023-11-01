@@ -21,7 +21,7 @@ class Shop extends Component {
         currentSearch: ""
      } 
     initial = new URLSearchParams(window.location.search)?.get("initial")
-    requestCount = 10
+    requestCount = 8
     requestPage = 1
     category = "all"
     queryUrl = `${API_BASE_URL}products/?count=${this.requestCount}&&page=${this.requestPage}&&category=${this.category}`

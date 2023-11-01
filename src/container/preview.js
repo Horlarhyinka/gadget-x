@@ -10,8 +10,6 @@ import Back from "../components/back";
 import { Icon } from "@iconify/react";
 import { numberToPrice } from "../functions/factory";
 import Consent from "../components/consent";
-import image1 from "../../public/gadgets-img-01.png";
-
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 const tokenName = process.env.REACT_APP_AUTH_TOKEN_NAME
@@ -56,7 +54,7 @@ const Preview = () => {
 
 const imagesList = images.map((image, i)=>{
     const handleClick = () => setCurImg(image)
-    return <img className="mini-image" alt="" onClick={handleClick} src={image1} key={i} id={image} />
+    return <img className="mini-image" alt="" onClick={handleClick} src={image} key={i} id={image} />
 })
 
     const renderFeedback = () =>{

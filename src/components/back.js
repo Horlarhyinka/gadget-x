@@ -4,7 +4,7 @@ import "./styles/back.css";
 import { Icon } from '@iconify/react';
 
 const Back = ({url}) => {
-    return ( <Link to={url || "/"} className="back">
+    return ( <Link onClick={()=>{window.history.back()}} className="back">
         <button><Icon icon="material-symbols:arrow-back-ios-new-rounded" />  Back</button>
     </Link> );
 }

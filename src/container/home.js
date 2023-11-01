@@ -120,7 +120,7 @@ class Home  extends React.Component {
     renderReviews = () =>{
       return <ul style={{display: "flex", overflowX: "scroll"}} >
         {
-          reviews.map(review=><ReviewCard userName={review.name} avatar={review.avatar} comment={review.comment} />)
+          reviews.map((review, i)=><ReviewCard key={i} userName={review.name} avatar={review.avatar} comment={review.comment} />)
         }
       </ul>
     }
@@ -145,7 +145,7 @@ class Home  extends React.Component {
             <p >here are some trending products you should try</p>
             {this.renderLatest()}
             {this.state.productsCount - this.state.latest?.length > 0 && <button className="more" onClick={this.handleLoadMore} >load more</button>}
-           {/* <h1 className="sub-header"  > what people say about us. </h1>
+           <h1 className="sub-header"  > what people say about us. </h1>
           <p> here are some reviews from our clients.</p>
           {this.renderReviews()}
           <h1 className="sub-header">FAQs</h1>
@@ -155,23 +155,23 @@ class Home  extends React.Component {
               <p>yes, you can return the product within 14 days after delivery.</p>
             </details>
             <details>
-              <summary>Can I return the product if it's not up to my expectations?</summary>
-              <p>yes, you can return the product within 14 days after delivery.</p>
+              <summary>What payment methods do you accept?</summary>
+              <p>We accept a variety of payment methods, including credit and debit cards (Visa, Mastercard, American Express), PayPal, and other popular online payment options. Rest assured, your payment information is secure with us.</p>
             </details>
             <details>
-              <summary>Can I return the product if it's not up to my expectations?</summary>
-              <p>yes, you can return the product within 14 days after delivery.</p>
+              <summary>Do you offer warranties on your products?</summary>
+              <p>Yes, many of our gadgets come with manufacturer warranties. The warranty period and coverage may vary depending on the product, so be sure to check the product description for specific warranty information. If you encounter any issues with a warranted product, contact our customer support, and we'll assist you in the warranty claim process.</p>
             </details>
             <details>
-              <summary>Can I return the product if it's not up to my expectations?</summary>
-              <p>yes, you can return the product within 14 days after delivery.</p>
+              <summary>How do I place an order on your website?</summary>
+              <p>To place an order, simply browse our website, select the gadget you want, and click "Add to Cart." Once you've added all your desired items, go to your cart and click "Proceed to Checkout." Follow the on-screen instructions to enter your shipping and payment information</p>
             </details>
           </div>
             <Consent message={this.state.dialog?.message} status={this.state.dialog?.status} controller={()=>this.setState({dialog:null})} />
             <h1 className="sub-header" >subscribe to our newsletter</h1>
             <p>subscribe to our newsletter and get notified about updates on our inventory.</p>
             <input className="news-letter" type= "email" placeholder="example@gmail.com" ref={this.newsLetterRef} />
-            <button className="news-letter" onClick={()=>this.handleNewsLetter()} >subscribe</button> */}
+            <button className="news-letter" onClick={()=>this.handleNewsLetter()} >subscribe</button>
           </div>);
     }
 }

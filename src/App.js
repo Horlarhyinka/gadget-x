@@ -21,6 +21,7 @@ import NotFound from './container/not-found';
 import Comments from './container/comments';
 import PaymentCallback from './container/callback'
 import AuthCallback from './container/auth-callback';
+import About from './container/about';
 
 class App extends React.Component{
 state={
@@ -50,6 +51,7 @@ render(){
        <Route exact path="/auth/redirect" element={<AuthCallback />} />
        <Route exact path='/forget-password/:token' element={<ResetPassword/>} />
        <Route exact path='/forget-password' element={<ForgetPassword />} />
+       <Route path='/about' element={<About />} />
        <Route path='/*' element={<NotFound />} />
      </Routes>
      <Footer />

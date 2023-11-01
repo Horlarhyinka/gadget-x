@@ -9,7 +9,8 @@ module.exports = {
     output:{
         path:path.resolve(__dirname,"dist"),
         filename:"main.js",
-        publicPath:"/"
+        publicPath:"/",
+        scriptType: "module"
     },
     plugins:[
         new HtmlPlugin({template:path.resolve(__dirname,"src/index.html")}),
@@ -38,7 +39,7 @@ module.exports = {
                 use:["style-loader", "css-loader"]
             },
             {
-                test:/\.(png|jpg|jpe?g|gif)/,
+                test:/\.(png|jpg|jpe?g|gif|webp)/,
                 use:["file-loader"]
             },
             {
