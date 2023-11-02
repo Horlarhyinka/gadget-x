@@ -6,6 +6,7 @@
   margin: 0px;
   padding: 0px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .App-logo {

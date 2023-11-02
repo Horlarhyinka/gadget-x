@@ -9,10 +9,13 @@
 
 .footer ul{
     display: inline-block;
-    width: 30%;
-    margin: 35px 0px;
+    width: 90%;
+    max-width: 350px;
+    margin: 5px 0px;
     text-align: center;
     list-style: none;
+    padding: 12px;
+    box-sizing: border-box;
 }
 
 .footer li{

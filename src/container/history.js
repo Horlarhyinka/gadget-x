@@ -20,7 +20,7 @@ class History extends React.Component {
      }
      retry = async(items) =>{
         // <--make api call -->
-       items =items.map(({_id,quantity})=>({id:_id, quantity}))
+       items =items?.map(({_id,quantity})=>({id:_id, quantity}))
         const res = await axios.post(retryUrl,{items},{headers:{"x-auth-token":getAuthToken()}})
         const redirectUrl = res.data.data
         if(redirectUrl)return window.location.assign(redirectUrl)
@@ -30,7 +30,7 @@ class History extends React.Component {
             <h4>history</h4>
             <div className="card-list">
                 {
-                this.state.history.length >= 1 ? this.state.history.map(history=><HistoryCard retry={this.retry} key={history._id} history= {history} />):<h1 className="null" >you have no history yet</h1>
+                this.state.history?.length >= 1 ? this.state.history?.map(history=><HistoryCard retry={this.retry} key={history._id} history= {history} />):<h1 className="null" >you have no history yet</h1>
             }
             </div>
         </div>);

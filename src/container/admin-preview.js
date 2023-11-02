@@ -41,7 +41,7 @@ const AdminPreview = () => {
     const handleDelete = async(e) =>{
         e.preventDefault()
         const res = await authenticateResponse(()=>axios.delete(queryUrl,{headers:{[tokenName]:getAdminAuthToken()}}))
-        if(res.status !== 200) return setDialog({message:"could not delete produt",status:"failed"})
+        if(res?.status !== 200) return setDialog({message:"could not delete produt",status:"failed"})
         window.location.assign("/admin")
 
     }

@@ -18,7 +18,7 @@ const RelatedProducts = () => {
         })
     },[queryUrl])
     
-    const relatedList = related.map((product)=>{
+    const relatedList = related?.map((product)=>{
     
         const {_id,preview_image_url:img, name, description, price} = product
         

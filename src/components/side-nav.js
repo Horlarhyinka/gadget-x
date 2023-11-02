@@ -6,12 +6,15 @@ import {getMail, logOut} from "../functions/auth";
 import AuthNav from "./auth-nav";
 import { Icon } from "@iconify/react";
 import Badge from "./badge";
+import Social from "./social";
 
 const SideNav = ({toggleNav}) => {
     const mail = getMail()
     const initial = mail?.slice(0,1)
     return ( <div className="side-nav">
-        <div className="close"><img onClick={()=>toggleNav()} src={close} alt="close"/></div>
+        <div className="close">
+        <Icon icon="system-uicons:close" className="icn" onClick={()=>toggleNav()} />
+        </div>
         {!mail?<AuthNav toggleNav={toggleNav} />:<div className="info">
             <Badge initial={initial} />
             <p className="mail">{mail}</p>
@@ -24,11 +27,7 @@ const SideNav = ({toggleNav}) => {
         <li><Link className="a" onClick={()=>toggleNav()} to="/cart">cart</Link></li>
         <li><Link className="a" onClick={()=>toggleNav()} to="/history">history</Link></li>
         </ul>
-        <ul className="social" >
-            <li><a href="https://twitter.com/DanijuFarouq?t=JrmLRy5UaAdVNTDGgP_1rg&s=09" ><Icon className="icn" icon="logos:twitter" /></a></li>
-            <li><a href="https://web.facebook.com/farouq.daniju" ><Icon className="icn" icon="logos:facebook" /></a></li>
-            <li><a href="https://www.linkedin.com/in/farouq-daniju-9440a2219" ><Icon icon="skill-icons:linkedin" /></a></li>
-        </ul>
+        <Social/>
     </div> );
 }
  

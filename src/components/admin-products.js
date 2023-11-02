@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 
 const AdminProducts = ({products, handleSearch}) => {
     const searchRef = React.createRef()
-    const productList = products.map(({name,description , price, preview_image_url:img, _id:id })=>{
+    const productList = products?.map(({name,description , price, preview_image_url:img, _id:id })=>{
         if(description?.length > 60){
             description = description.slice(0,60) + "..."
         }

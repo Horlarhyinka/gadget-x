@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles/footer.css";
+import Social from "./social";
 
 const Footer = () => {
     return ( <footer className="footer" >
@@ -22,6 +23,7 @@ const Footer = () => {
             <li>terms of service</li>
         </ul>
         <p>&copy;2022 Horlarhyinkaddev, All rights reserved.</p>
+        <Social />
     </footer> );
 }
  

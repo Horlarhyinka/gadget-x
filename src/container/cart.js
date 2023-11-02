@@ -42,7 +42,7 @@ class Cart extends React.Component{
         }
             )
         }
-        net = () => this.state.cart.reduce((acc,unit)=>{
+        net = () => this.state.cart?.reduce((acc,unit)=>{
             return acc + parseInt(unit.total)
         },0)
 
@@ -56,7 +56,7 @@ class Cart extends React.Component{
     removeFromCart = async(id) =>{
         const token = getAuthToken()
         await authenticateResponse(()=>axios.delete(this.queryUrl+"/"+id,{headers:{[tokenName]:token}}))
-        this.setState({cart:this.state.cart.filter((el)=>{
+        this.setState({cart:this.state.cart?.filter((el)=>{
             return el.info._id !== id
         })})
     }
@@ -67,7 +67,7 @@ class Cart extends React.Component{
     }
 
     increment = (indx) =>{
-        const newCart = this.state.cart.map((itm)=>{
+        const newCart = this.state.cart?.map((itm)=>{
             if(itm.indx == indx){
                 itm.quantity++
                 itm = this.updatePrice(itm)
@@ -78,7 +78,7 @@ class Cart extends React.Component{
     }
 
     decrement = (indx) =>{
-        const newCart = this.state.cart.map((itm)=>{
+        const newCart = this.state.cart?.map((itm)=>{
             if(itm.indx == indx){
                 if(itm.quantity > 1){
                    itm.quantity--
@@ -92,7 +92,7 @@ class Cart extends React.Component{
 
     purchaseCart = async() =>{
     // <-- make api call -->
-    const items = this.state.cart.map(({info,quantity})=>{
+    const items = this.state.cart?.map(({info,quantity})=>{
         const {_id} = info
         return {id:_id, quantity}
     })
@@ -111,7 +111,7 @@ class Cart extends React.Component{
     }
 
 
-    total = this.state.cart.reduce((sum,{total})=>{
+    total = this.state.cart?.reduce((sum,{total})=>{
         return sum+= total
 
     },0)
@@ -120,7 +120,7 @@ class Cart extends React.Component{
     render(){
         return <div className="cart">
             <Back url={"/shop"} />
-            {this.state.cart.length>=1 && this.state.cart.map(({info:data, indx, quantity, total})=>{
+            {this.state.cart?.length>=1 && this.state.cart?.map(({info:data, indx, quantity, total})=>{
             return <Card key={indx}
              id={data._id}
              indx={indx}

@@ -62,11 +62,6 @@ class Home  extends React.Component {
         this.setState((prevState) => ({
           productsCount: response.data.total,
           latest: [...prevState.latest, ...products
-          //   .sort((a, b) => {
-          //   const aFactor = new Date(a.updatedAt).getTime();
-          //   const bFactor = new Date(b.updatedAt).getTime();
-          //   return bFactor - aFactor;
-          // })
         ],
         }));
       } catch (ex) {

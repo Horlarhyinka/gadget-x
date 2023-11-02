@@ -1,0 +1,37 @@
+
+.social{
+    display: block;
+    width: 95%;
+    text-align: center;
+    margin: 16px 4px;
+}
+
+.social a{
+    display: inline-block;
+    padding: 8px;
+    margin: 4px 8px;
+}
+
+.social .icn{
+    font-size: 22px;
+    /* width: 24px;
+    height: 24px; */
+}
+
+
+/* .social li{
+    display: inline-block;
+    width: 35px;
+    aspect-ratio: 1;
+    margin: 35px 10px;
+
+}
+
+
+.social .icn{
+    font-size: 22px;
+    display: inline-block;
+    justify-content: space-evenly;
+}
+
+*/
