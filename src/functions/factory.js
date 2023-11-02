@@ -23,3 +23,16 @@ export const numberToPrice = (num) =>{
     }
     return returnVal
 }
+
+export const setToLocalStorage = (name, val)=>{
+    localStorage.setItem(name, JSON.stringify(val))
+}
+
+export const getFromLocalStorage = (name)=>{
+    const raw = localStorage.getItem(name)
+    return JSON.parse(raw)
+}
+
+export const deleteFromLocalStorage = name =>{
+    localStorage.removeItem(name)
+}

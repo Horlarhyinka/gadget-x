@@ -6,6 +6,7 @@ import Forget from "../components/forget-password";
 import Consent from "../components/consent";
 import Back from "../components/back";
 import { Icon } from '@iconify/react';
+import { setToLocalStorage } from "../functions/factory";
 
 const queryUrl = process.env.REACT_APP_API_BASE_URL+"auth/";
 
@@ -17,6 +18,8 @@ class Authenticate extends Component {
         error:false,
         dialog:null
      } 
+
+     oauthLiRef = React.createRef()
 
      setDialog(info){
         this.setState({dialog:info})
@@ -45,6 +48,19 @@ class Authenticate extends Component {
             
         })
     }
+
+    setOauthredirect = (e) =>{
+        e.preventDefault()
+        const current = window.location.pathname
+        let redirect;
+        if(current?.toLowerCase().includes("auth")){
+            redirect = "/"
+        }else{
+            redirect = current
+        }
+        setToLocalStorage("redirect_url", redirect)
+        window.location.href = this.oauthLiRef.current?.href
+    }
     
     render() { 
         return (<div className="auth" >
@@ -67,7 +83,7 @@ class Authenticate extends Component {
             <br></br>
             <button onClick={(e)=>this.handleSubmit(e)} className="submit"> submit </button>
             <p>or</p>
-            <a href={queryUrl + "google"} className="oauth"><Icon icon="logos:google-icon" className="icn" width="18" height="18" /><p>continue with google</p></a>
+            <a ref={this.oauthLiRef} href={queryUrl + "google"} onClick={(e)=>this.setOauthredirect(e)} className="oauth"><Icon icon="logos:google-icon" className="icn" width="18" height="18" /><p>continue with google</p></a>
             <p className="switch-state"><span onClick={()=>this.handleStatus()} >click to {this.state.status==="login"?"register":"login"}</span></p>     
             </form>
     

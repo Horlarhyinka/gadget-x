@@ -28,6 +28,8 @@
 
 .side-nav .info .mail{
     font-size: 14px;
+    width: 95%;
+    word-wrap: break-word;
 }
 
 .side-nav .info button{

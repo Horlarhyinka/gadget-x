@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { setAuthToken } from "../functions/auth";
 import { readCookie } from "../functions/cookie";
+import { getFromLocalStorage } from "../functions/factory";
 
 class AuthCallback extends Component {
     state = {  } 
@@ -11,7 +12,8 @@ class AuthCallback extends Component {
         const email = readCookie("email")
         const id = readCookie("id")
         setAuthToken(token, email, id)
-        window.location.assign("/")
+        const redirectUrl = getFromLocalStorage("redirect_url") || "/"
+        window.location.assign(redirectUrl)
     }
 
     render() { 
