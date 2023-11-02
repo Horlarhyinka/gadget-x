@@ -108,7 +108,7 @@ class Home  extends React.Component {
     renderLatest = () =>{
       return <ul >
         {
-          this.state.latest.map(({_id:id, name, description,preview_image_url:img , price}, i) =>{
+          this.state.latest?.map(({_id:id, name, description,preview_image_url:img , price}, i) =>{
           return <Link key={id} to={"/products/"+id} >
                     <ProductCard id={id} img={img} name={name} description={description} price={price} />
                 </Link>
