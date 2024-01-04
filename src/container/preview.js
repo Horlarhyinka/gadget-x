@@ -81,7 +81,7 @@ const imagesList = images.map((image, i)=>{
         <br></br>
         <div className="image-list">{imagesList}</div>
         <p className="name">{info.name}</p>
-        <p className="description">{info.description} here is a product description just for testing</p>
+        <p className="description">{info.description}</p>
         <p className="preview-price">₦{numberToPrice(info.price)}</p>
         <div className="preview-comments">
             {renderFeedback()}
