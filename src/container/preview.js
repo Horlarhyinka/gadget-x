@@ -75,8 +75,9 @@ const imagesList = images.map((image, i)=>{
     return <div>        
     <Consent message={dialog?.message} status={dialog?.status} controller={()=>{setDialog(null)}} />
     <Back url={"/shop"} />
-    {!info?<h1 className="preview-failed">loading preview...</h1>:( 
-    <div className="product-preview">
+    {!info? 
+    <h1 style={{fontSize: "18px", fontWeight: 420}} className="preview-failed">loading preview...</h1>
+    :(  <div className="product-preview">
         <img className="preview-image" src={curImg} alt={info.name} label={info.name} />
         <br></br>
         <div className="image-list">{imagesList}</div>
@@ -93,7 +94,7 @@ const imagesList = images.map((image, i)=>{
         }} className="checkout-btn">Add to cart</button>
         <RelatedProducts />
         <Jumia displayMessage={displayMessage} keyword={info.name} className="jumia" />
-        </div>)}
+    </div>)}
     </div> 
 }
  

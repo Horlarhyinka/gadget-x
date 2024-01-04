@@ -24,6 +24,7 @@
     font-size: 14px;
     margin:12px 4px;
     word-wrap: break-word;
+    color: rgba(0, 0, 0, 0.757);
 }
 .jumia-card strong{
     font-weight: bold;

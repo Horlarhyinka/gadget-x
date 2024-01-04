@@ -33,7 +33,7 @@ const RelatedProducts = () => {
     })
     
     return related.length?(<div className="related">
-        <h1 className="sub-header" >you may also like</h1>
+        <h1 className="sub-header" style={{fontSize: "16px", fontWeight: 540, margin: "16px"}} >you may also like</h1>
         <div className="related-list">
           {relatedList}  
         </div>

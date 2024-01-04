@@ -27,7 +27,7 @@ const JumiaProducts = ({keyword, displayMessage}) => {
                     return <Card key={prod.i} prop={prod} />
                 })
     return (<div className="jumia-wrapper">
-            <h1 className="sub-header">from jumia 
+            <h1 style={{fontSize: "16px", color: "black", fontWeight: 540, margin: "24px 0px 16px"}} className="sub-header">from jumia 
             </h1>
              <img className="jumia-head-logo" src={jumia_image_url} alt="jumia-logo" />
             <img className="jumia-head-logo" src={jumia_image_url} alt="jumia-logo" />
