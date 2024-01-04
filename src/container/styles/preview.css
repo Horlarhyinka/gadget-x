@@ -45,30 +45,33 @@ small{
     display: block;
     width: calc(100% - 42px);
     margin-left: 22px;
-    padding: 4px;
+    padding: 8px;
     text-align: left;
-    font-weight: 460;
+    font-weight: 400;
     font-size: 16px;
     margin-top: 0px;
-    color: rgba(0, 0, 0, 0.77);
+    color: rgba(0, 0, 0, 0.631);
 }
 
 .product-preview .name{
     display: block;
     text-align: left;
     font-size: 24px;
-    font-weight: 540;
+    font-weight: 480;
     width: calc(100% - 52px);
     margin: 16px 22px 0px;
-    padding: 4px;
+    padding: 8px;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
 }
 
 
 .preview-price{
     display: block;
     text-align: center;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 420;
+    color: rgba(0, 0, 0, 0.811);
 
 }
 .comment{
@@ -110,16 +113,17 @@ small{
 .reactions{
     display: inline-block;
     width: 95%;
-    max-width: 400px;
+    max-width: 450px;
 }
 
 .reaction.active{
     color: blue;
 }
 
-a.reaction{
-    color: black;
+a.reaction, div.reaction{
+    color: rgba(0, 0, 0, 0.756);
     text-decoration: none;
+    padding: 8px;
 }
 
 .reactions .reaction{
@@ -130,7 +134,7 @@ a.reaction{
 }
 
 .reactions .reaction:hover{
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.098);
 }
 
 .reaction p{
@@ -147,7 +151,7 @@ a.reaction{
     width: 180px;
     height: 35px;
     font-size: 16px;
-    font-weight: 450;
+    font-weight: bold;
 }
 
 
