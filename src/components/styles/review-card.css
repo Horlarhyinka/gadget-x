@@ -1,39 +1,49 @@
-.review-card{
-    display: inline-block;
+.review-card {
+    display: flex;
     width: 350px;
-    min-width: 350px;
-    height: 160px;
-    padding: 8px 12px;
+    min-width: 250px;
+    height: auto;
+    padding: 16px;
     margin: 16px 8px;
+    border-radius: 12px;
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+}
+
+.review-card img {
+    width: 100px;
+    height: 100px;
     border-radius: 8px;
-    background-color: rgb(238, 238, 238);
-}
-.review-card img{
-    width: 120px;
-    aspect-ratio: 1;
-    display: inline-block;
-    border-radius: 5px;
+    object-fit: cover;
+    /* vertical-align: top; */
 }
 
-.review-card div{
-    display: inline-block;
-    width: calc(100% - 130px);
+.review-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 16px;
+    width: 100%;
     text-align: left;
-    padding-left: 8px;
+    vertical-align: top;
 }
 
-.review-card h1{
-    font-size: 18px;
-    font-weight: 480px;
-    margin: 8px 2px 4px;
-    display: block;
-    text-align: left;
-    word-wrap: break-word;
+.review-card h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: #333;
 }
 
-.review-card p{
+.review-card p {
     font-size: 14px;
-    display: block;
-    word-wrap: break-word;
-    font-weight: 450px;
+    font-weight: 400;
+    margin: 8px 0px;
+    color: #666;
+    line-height: 1.5;
 }
