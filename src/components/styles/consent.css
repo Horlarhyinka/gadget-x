@@ -20,11 +20,11 @@
 
 
 .consent.failed{
-    background-color: rgb(255, 220, 220);
+    background-color: red;
 }
 
 .consent.success{
-    background-color: rgb(236, 255, 220);
+    background-color: greenyellow;
 
 }
 

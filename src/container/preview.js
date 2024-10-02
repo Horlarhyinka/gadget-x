@@ -80,7 +80,7 @@ const imagesList = images.map((image, i)=>{
     :(  <div className="product-preview">
         <img className="preview-image" src={curImg} alt={info.name} label={info.name} />
         <br></br>
-        <div className="image-list">{imagesList}</div>
+        <div className="image-list horizontal-scroll">{imagesList}</div>
         <p className="name">{info.name}</p>
         <p className="description">{info.description}</p>
         <p className="preview-price">₦{numberToPrice(info.price)}</p>
