@@ -88,12 +88,12 @@ class Home  extends React.Component {
 
     renderCategories = () =>{
       let i = 0;
-      return <ul className="categories" >
+      return <ul className="categories horizontal-scroll" >
         {
         categories?.map(({image,type, description})=>{
           i++;
           return <li key={i} ><Link to={"/shop?initial="+type.replace("&","and")}><img src={image} />
-          <div><p className="type" >
+          <div className="content" ><p className="type" >
             {type}</p><p className="description" >{description}</p></div>
           </Link></li>
         })}
@@ -104,7 +104,7 @@ class Home  extends React.Component {
       return <ul >
         {
           this.state.latest?.map(({_id:id, name, description,preview_image_url:img , price}, i) =>{
-          return <Link key={id} to={"/products/"+id} >
+          return <Link key={id} to={"/products/"+id}  >
                     <ProductCard id={id} img={img} name={name} description={description} price={price} />
                 </Link>
         })

@@ -39,3 +39,20 @@
   margin: 35px 0px;
   width: 100%;
 }
+
+
+.horizontal-scroll {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Hide vertical overflow */
+  white-space: nowrap; /* Ensure content stays in a single line */
+}
+
+/* Hide scrollbar in most modern browsers */
+.horizontal-scroll::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar for WebKit-based browsers (Chrome, Safari) */
+}
+
+.horizontal-scroll {
+  -ms-overflow-style: none;  /* Hide scrollbar in Internet Explorer and Edge */
+  scrollbar-width: none;     /* Hide scrollbar in Firefox */
+}
