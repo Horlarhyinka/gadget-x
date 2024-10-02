@@ -14,7 +14,10 @@ module.exports = {
     },
     plugins:[
         new HtmlPlugin({template:path.resolve(__dirname,"src/index.html")}),
-        new Dotenv({path:"./.env",safe:true})],
+        new Dotenv({
+            path: path.resolve(__dirname, '.env'),
+            systemVars: true,
+          }),],
     devServer:{
         port:process.env.REACT_APP_PORT,
         host:"localhost",

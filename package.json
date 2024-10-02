@@ -5,7 +5,7 @@
   "main": "index.js",
   "devDependencies": {
     "@iconify/react": "^4.1.1",
-    "dotenv-webpack": "^8.0.1",
+    "dotenv-webpack": "^8.1.0",
     "file-loader": "^6.2.0",
     "json-loader": "^0.5.7",
     "vercel": "^32.5.0",
