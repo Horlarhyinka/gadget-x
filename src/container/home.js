@@ -113,7 +113,7 @@ class Home  extends React.Component {
     }
 
     renderReviews = () =>{
-      return <ul style={{display: "flex", overflowX: "scroll"}} >
+      return <ul className="horizontal-scroll reviews" >
         {
           reviews.map((review, i)=><ReviewCard key={i} userName={review.name} avatar={review.avatar} comment={review.comment} />)
         }

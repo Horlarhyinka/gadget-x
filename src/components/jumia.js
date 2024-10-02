@@ -33,7 +33,7 @@ const JumiaProducts = ({keyword, displayMessage}) => {
             <img className="jumia-head-logo" src={jumia_image_url} alt="jumia-logo" />
             <img className="jumia-head-logo" src={jumia_image_url} alt="jumia-logo" />
                 <p className="jumia-result">{data.length} result{`${data.length>0?"s":""}`}</p>
-                <div className="card-list">
+                <div className="card-list horizontal-scroll">
                 {
                     list
                 }  
