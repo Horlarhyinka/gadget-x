@@ -10,7 +10,7 @@ const Card = ({prop}) => {
     return ( <div key={i} className="jumia-card" onClick={()=>{window.open(`https://www.jumia.com.ng/catalog/?q=${prop.name}`,"_blank")}} >
         <img src={img} alt={name} label={name} />
         <div className="info">
-            <p>{name}</p>
+            <p>{name?.slice(0,61)}...</p>
             <strong>{price}</strong>
         </div>
             
