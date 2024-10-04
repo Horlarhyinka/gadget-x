@@ -20,11 +20,21 @@
 }
 
 .jumia-card p{
+    font-size: 1rem;
     font-weight: 400;
-    font-size: 14px;
-    margin:12px 4px;
+    text-align: left;
+    padding: 0.875rem;
+    width: 100%;
     word-wrap: break-word;
-    color: rgba(0, 0, 0, 0.757);
+    white-space: normal; /* Ensure text breaks properly */
+    overflow-wrap: break-word;
+    overflow: hidden; /* Prevent overflow if too much text */
+    text-overflow: ellipsis; /* Handle text that is too long */
+    max-height: 3rem; /* Limit the height to prevent overflow */
+    display: -webkit-box; /* Ensures multi-line ellipsis works */
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical; /* Required for ellipsis */
 }
 .jumia-card strong{
     font-weight: bold;
